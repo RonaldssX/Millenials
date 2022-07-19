@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9Sm-LA-6eH"/>
+                        <viewControllerLayoutGuide type="bottom" id="FZ8-9s-pCV"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Millenials_Icon" translatesAutoresizingMaskIntoConstraints="NO" id="oB8-VE-zAL">
+                                <rect key="frame" x="90" y="331" width="234" height="234"/>
+                                <color key="tintColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="oB8-VE-zAL" secondAttribute="height" id="Uqc-um-UP3"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.17254901960784313" green="0.17254901960784313" blue="0.32941176470588235" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" cocoaTouchSystemColor="lightTextColor"/>
+                        <constraints>
+                            <constraint firstItem="oB8-VE-zAL" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="90" id="Nsf-k9-r0F"/>
+                            <constraint firstItem="oB8-VE-zAL" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="OrI-HX-NIc"/>
+                            <constraint firstItem="oB8-VE-zAL" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailing" constant="-90" id="swU-7z-cEK"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="393" y="237"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Millenials_Icon" width="587.33331298828125" height="682.66668701171875"/>
+    </resources>
+</document>
