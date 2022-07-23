@@ -8,6 +8,8 @@
 
 import UIKit
 
+var gameScene: GameSceneCoordinator!
+
 final class PlayersVC: UIViewController {
     
      var activeTextField: FlatTextField?
@@ -26,7 +28,7 @@ final class PlayersVC: UIViewController {
             
             self.player1View.rootViewController = self
             
-            self.player1View.playerPictureView = UIImageView(image: PlayerPictures.shared.defaultAdd)
+            self.player1View.playerPictureView = UIImageView(image: PlayerPictures.defaultAdd)
             
             let gesture = UITapGestureRecognizer(target: self, action: #selector(modifyPlayerPicture(_:)))
             
@@ -51,7 +53,7 @@ final class PlayersVC: UIViewController {
             
             self.player2View.rootViewController = self
             
-            self.player2View.playerPictureView = UIImageView(image: PlayerPictures.shared.defaultAdd)
+            self.player2View.playerPictureView = UIImageView(image: PlayerPictures.defaultAdd)
             let gesture = UITapGestureRecognizer(target: self, action: #selector(modifyPlayerPicture(_:)))
             self.player2View.playerPictureView.addGestureRecognizer(gesture)
             
@@ -112,7 +114,7 @@ final class PlayersVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        title = localized("Players")
         edgesForExtendedLayout = .all
         extendedLayoutIncludesOpaqueBars = true
         configureView()
@@ -163,9 +165,9 @@ final class PlayersVC: UIViewController {
         imageController.takePicture(callback: {[weak self](playerPic) in
             let playerView = opt.first(where: {($0?.gestureRecognizers?.contains(sender))!})!?.superview as! PlayerSetupView
             var playerPicture: UIImage
-            if (playerPic == nil || playerPic == PlayerPictures.shared.defaultAdd || playerPic == PlayerPictures.shared.defaultGame) {
+            if (playerPic == nil || PlayerPictures.isDefaultPicture(playerPic)) {
                             
-                playerPicture = PlayerPictures.shared.defaultGame
+                playerPicture = PlayerPictures.defaultGame
                 playerView.playerPictureView.layer.borderWidth = 3.0
                             
             } else {
@@ -177,19 +179,13 @@ final class PlayersVC: UIViewController {
                 
             playerView.playerPicture = playerPicture
                 
-            if (playerPicture == PlayerPictures.shared.defaultGame) {
+            if (playerPicture == PlayerPictures.defaultGame) {
                 playerView.playerPictureView.image = playerView.playerPictureView.image!.withRenderingMode(.alwaysTemplate)
             }
                 
                 self?.imageController = nil
                 
             })
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if (segue.identifier == "PlayersChangeSegue") { Millenials.shared.startGame() }
-        
     }
     
     deinit {        
@@ -232,7 +228,7 @@ extension PlayersVC {
                 }
                 if (playerView!.isDefaultImage) { issues.append(.DefaultPicture) }
             }
-            
+            /*
             if (MDebug.shared.shouldDebug) {
                 if MDebug.shared.mods.contains(.noNames) {
                     issues.removeAll() { $0 == .NoName }
@@ -240,7 +236,7 @@ extension PlayersVC {
                 if MDebug.shared.mods.contains(.noPictures) {
                     issues.removeAll() { $0 == .DefaultPicture }
                 }
-            }
+            } */
             
             if (issues.count == 0) { return [.None] }
             return issues
@@ -279,11 +275,28 @@ extension PlayersVC {
         Millenials.shared.players = playerViews.createPlayerObjects()
         
         if let startAlert = startAlert, presentedViewController == startAlert {
-            startAlert.dismissViewBlock() { self.performSegue(withIdentifier: "PlayersChangeSegue", sender: nil) }
+            startAlert.dismissViewBlock() { self.navigate() }
         } else {
-            performSegue(withIdentifier: "PlayersChangeSegue", sender: nil)
+            navigate()
         }
     
+    }
+    
+   
+    
+    private func navigate() {
+        Millenials.shared.startGame()
+        if (GameConfigs.shared.tempShouldUseSegues) {
+            performSegue(withIdentifier: "PlayersChangeSegue", sender: nil)
+        } else {
+            gameScene = GameSceneCoordinator(game: Millenials.shared)
+            gameScene.start(self)
+            /*
+            let playerChangeVC = PlayerChangeVC()
+            playerChangeVC.configure(with: Millenials.shared.currentPlayer!)
+            navigationController?.pushViewController(playerChangeVC, animated: false)
+             */
+        }
     }
     
 }

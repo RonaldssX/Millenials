@@ -173,8 +173,18 @@ final class ConclusionVC: UIViewController {
     
     @objc
     private func returnToIntroVC() {
-        if let nav = navigationController as? NavigationVC {
-            nav.exitToMainScreen()
+        if (GameConfigs.shared.tempShouldUseSegues) {
+            if let nav = navigationController as? NavigationVC {
+                nav.exitToMainScreen()
+            }
+        } else {
+            NotificationCenter.default.post(name: "next")
+            //navigationController?.popToRootViewController(animated: true)
+            //if let introVC = navigationController?.children.first(where: { $0 is IntroVC }) as? IntroVC {
+            //    navigationController?.popToViewController(introVC, animated: true)
+            //} else {
+            //    navigationController?.popToRootViewController(animated: true)
+            //}
         }
         Millenials.shared.prepareForNextGame()
         
@@ -281,7 +291,7 @@ extension ConclusionVC {
     
     private func playerDetailConfig() {
         
-        navigationItem.title = "\(displayPlayer!.name!)"
+        navigationItem.title = "\(displayPlayer!.name)"
         endGameButton?.removeFromSuperview()
         self.winnerView = WinnerView()
         

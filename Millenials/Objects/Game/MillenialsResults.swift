@@ -46,7 +46,7 @@ final class MillenialsResults: Millenials {
         get { (winningPlayer != nil) ? .Win : .Tie }
         
     }
-   
+    /*
     @available(*, unavailable)
     override func startGame() { }
     
@@ -64,5 +64,6 @@ final class MillenialsResults: Millenials {
     
     @available(*, unavailable)
     override func prepareForNextGame() { }
+     */
     
 }

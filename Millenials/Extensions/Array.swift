@@ -45,9 +45,7 @@ extension Array where Element == PlayerSetupView {
         
         forEach({ playerView in
             
-            let player = Player(name: playerView.playerTextField.text, picture: playerView.playerPicture, color: nil)
-            
-            player.color = playerView.playerPictureView.tintColor
+            let player = Player(name: playerView.playerTextField.text ?? "", picture: playerView.playerPicture ?? PlayerPictures.defaultGame, color: playerView.playerPictureView.tintColor)
             
             playerObjects.append(player)
             

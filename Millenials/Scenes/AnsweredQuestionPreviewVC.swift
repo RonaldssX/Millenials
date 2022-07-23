@@ -14,6 +14,7 @@ import AppKit
 final class AnsweredQuestionPreviewVC: UIViewController {
     
     private weak var question: Question?
+    private weak var answeredQuestion: AnsweredQuestion?
     
     private var questionConstraint: NSLayoutConstraint?
     private var questionView: UIView! {
@@ -100,30 +101,38 @@ final class AnsweredQuestionPreviewVC: UIViewController {
         
     }
     
-    func previewQuestion(_ quest: Question) {
+    func previewQuestion(_ quest: AnsweredQuestion, question: Question) {
         loadViewIfNeeded()
         
         if #available(iOS 13.0, *) {
             modalPresentationStyle = .automatic
         }
         
-        self.question = quest
+        self.answeredQuestion = quest
+        self.question = question
         
         view.addMillenialsGradient()
         self.questionView = UIView()
         self.questionLabel = UILabel()
         self.buttonStackView = UIStackView()
+        var answers: [String]
+        if let order = quest.extraData["order"] as? [String] {
+            answers = order
+        } else {
+            answers = question.answers
+        }
         
-        let answerStore: AnsweredQuestion? = quest.answeredStore
-        for answer in quest.answers {
+        for answer in answers {
             let button = buttonFactory()
             button.layoutIfNeeded()
             button.setTitle(answer, for: .normal)
-            if answer == quest.answeredStore?.playerAnswer {
-                button.backgroundColor = (answerStore?.answeredCorrectly ?? false) ? .Green : .Red
+            if answer == quest.playerAnswer {
+                button.backgroundColor = quest.answeredCorrectly ? .Green : .Red
                 button.tag = 21
+            } else if (!quest.hasAnswered && answer == question.correctAnswer) {
+                button.backgroundColor = .blue
             } else {
-                button.backgroundColor = .Purple
+                button.backgroundColor = .LightPurple
             }
             buttonStackView.addArrangedSubview(button)
             button.widthAnchor.constraint(equalTo: buttonStackView.widthAnchor).isActive = true

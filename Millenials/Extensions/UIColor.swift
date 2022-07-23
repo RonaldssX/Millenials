@@ -10,6 +10,18 @@ import UIKit
 
 extension UIColor {
     
+    convenience init(hex: String, alpha: CGFloat = 1.0) {
+        let hexInt = Int(hex, radix: 16)!
+        let r = CGFloat((hexInt >> 16) & 0xff) / 255
+        let g = CGFloat((hexInt >> 08) & 0xff) / 255
+        let b = CGFloat((hexInt >> 00) & 0xff) / 255
+        self.init(R: r, G: g, B: b, alpha: alpha)
+    }
+    
+    convenience init(R: Int, G: Int, B: Int, A: Int) {
+        self.init(R: CGFloat(R), G: CGFloat(G), B: CGFloat(B), alpha: CGFloat(A))
+    }
+    
     convenience init(R: CGFloat, G: CGFloat, B: CGFloat, alpha: CGFloat) {
         // an init method that allows the developer to put raw
         // rgb values to init a color, instead of diving it by 255

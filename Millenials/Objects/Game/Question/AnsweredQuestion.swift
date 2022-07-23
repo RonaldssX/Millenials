@@ -14,14 +14,15 @@ final class AnsweredQuestion: Decodable, Hashable {
         case playerAnswer, multiplier
     }
     
+    weak var player: Player?
     weak var question: Question? 
     
     var extraData: [String: Any] = [:]
     
     var playerAnswer: String?
-    lazy var hasAnswered: Bool = {
-        return (playerAnswer != nil && !playerAnswer!.isEmpty)
-    }()
+    var hasAnswered: Bool {
+        get { return (playerAnswer != nil && !playerAnswer!.isEmpty) }
+    }
     private var answeredCorrectlyStore: Bool = false
     var answeredCorrectly: Bool {
         get {
@@ -33,7 +34,7 @@ final class AnsweredQuestion: Decodable, Hashable {
     }
     private var multiplier: Int = 1
     private var pointsEarnedStore: Int = 0
-    var pointsEarned: Int  {
+    var pointsEarned: Int {
         get {
             if let question = question {
                 pointsEarnedStore = (question.value * multiplier)

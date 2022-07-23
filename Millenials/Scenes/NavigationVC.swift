@@ -6,6 +6,13 @@
 //  Copyright © 2019 Ronaldo Santana. All rights reserved.
 //
 
+/*
+    // mlk, a navegacao nesse app é a maior bagunça da historia
+    // nao sei como isso funciona cacete
+    // necessita muito de um refactor
+ 
+ */
+
 import UIKit
 
 fileprivate let cancelImage = UIImage(named: "ExitGame")!.scaled(to: CGSize(width: 30, height: 30))
@@ -90,7 +97,7 @@ final class NavigationVC: UINavigationController {
     @objc
     func returnToMainScreen() {
         
-        Millenials.shared.earlyEndGame()
+        Millenials.shared.endGame()
         
         quitAlert?.dismissViewBlock {
             
@@ -197,20 +204,23 @@ extension NavigationVC {
     func configureQuestionVC(_ vc: UIViewController) {
         
         showStatusBar()
-        if MDebug.shared.shouldDebug && MDebug.shared.mods.contains(.noQuestionTimer) { return }
+        //if MDebug.shared.shouldDebug && MDebug.shared.mods.contains(.noQuestionTimer) { return }
         guard (navigationItem.rightBarButtonItem == nil) else { return }
-        
-        let rightTimer = BarTimer(time: questionCountdownTime)
-        rightTimer.tintColor = .OffWhite
-        
-        vc.navigationItem.setRightBarButton(rightTimer, animated: true)
+        if (GameConfigs.millenialsConfig.shouldDisplayTimer) {
+            let rightTimer = BarTimer(time: GameConfigs.millenialsConfig.timerDuration)
+            rightTimer.tintColor = .OffWhite
+            vc.navigationItem.setRightBarButton(rightTimer, animated: true)
+        }
         
     }
     
     func configurePlayerRoundReportVC(_ vc: UIViewController) {
         
         showStatusBar()
-        vc.navigationItem.title = String(_currentPlayer!.name!)
+        vc.navigationItem.title = String(_currentPlayer!.name)
+        if let playerRoundReportVC = vc as? PlayerRoundReportVC {
+            playerRoundReportVC.player = Millenials.shared.currentPlayer!
+        }
         
     }
     

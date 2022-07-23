@@ -33,7 +33,7 @@ final class WatchHandler: NSObject {
         guard Millenials.shared.currentPlayer != nil else { return }
         /* send profile pic */
         let currentPlayer = Millenials.shared.currentPlayer!
-        let playerPic = currentPlayer.picture!.pngData()
+        let playerPic = currentPlayer.picture.pngData()
         session.sendMessage(["picture": playerPic], replyHandler: nil, errorHandler: nil)
         print("image sent! // iphone")
     }

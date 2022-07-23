@@ -12,7 +12,7 @@ class QuestionReportCell: UITableViewCell {
     
     private var hasConfigured: Bool = false
     
-    private weak var answeredQuestionObject: AnsweredQuestion?
+    weak var answeredQuestionObject: AnsweredQuestion?
     
     public var questionStatementLabel: UILabel! {
         
@@ -141,7 +141,8 @@ class QuestionReportCell: UITableViewCell {
         
     }
     
-    public func configureWithQuestion(_ question: Question) {
+    public func configureWithQuestion(_ question: Question, answer: AnsweredQuestion) {
+        self.answeredQuestionObject = answer
     
         func setupCorrectAnswerLabel() {
             self.questionCorrectAnswerLabel = UILabel()
@@ -154,20 +155,17 @@ class QuestionReportCell: UITableViewCell {
         
         questionStatementLabel.text = "\(question.statement)"
         
-        if let answer = question.answeredStore {
-            if (answer.hasAnswered) {
-                playerAnswerLabel.text = localized("YourAnswer") + " \(answer.playerAnswer!)"
-                if (answer.answeredCorrectly) {
-                    playerEarnedPointsLabel = UILabel()
-                    playerEarnedPointsLabel.attributedText = attributedPointsString()
-                } else {
-                    playerAnswerLabel.text = localized("NoAnswer")
-                    setupCorrectAnswerLabel()
-                }
-                layoutIfNeeded()
+        if (answer.hasAnswered) {
+            playerAnswerLabel.text = localized("YourAnswer") + " \(answer.playerAnswer!)"
+            if (answer.answeredCorrectly) {
+                playerEarnedPointsLabel = UILabel()
+                playerEarnedPointsLabel.attributedText = attributedPointsString()
             }
+        } else {
+            playerAnswerLabel.text = localized("NoAnswer")
         }
-        
+        setupCorrectAnswerLabel()
+        layoutIfNeeded()
     }
     
     @nonobjc

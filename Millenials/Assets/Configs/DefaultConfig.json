@@ -1,0 +1,39 @@
+{
+    "millenialsConfig": {
+        
+        "minNumberOfRounds": 0,
+        "maxNumberOfRounds": 3,
+        "numberOfRounds": 1,
+        
+        "minNumberOfPlayers": 2,
+        "maxNumberOfPlayers": 2,
+        "numberOfPlayers": 2,
+        
+        "shouldHaveWaitTimeOnAnswerButton": false,
+        "waitTimeOnAnswerButton": 3,
+        
+        "shouldDisplayTimer": false,
+        "timerDuration": 15,
+        
+        "shouldShufflePlayers": true
+        
+    },
+    "questionsConfig": {
+        
+        "jsonFilename": "DefaultQuestions",
+        
+        "easyValue": 100,
+        "mediumValue": 200,
+        "hardValue": 400,
+        
+        "minNumberOfQuestionsPerRound": 5,
+        "maxNumberOfQuestionsPerRound": 10,
+        "numberOfQuestionsPerRound": 2,
+        
+        "numberOfOptionsPerQuestion": 4,
+        "includesCorrectOption": false
+        
+    },
+    "isLoaded": true,
+    "tempShouldUseSegues": false
+}

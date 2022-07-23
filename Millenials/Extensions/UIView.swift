@@ -8,6 +8,8 @@
 
 import UIKit.UIView
 
+fileprivate let gradientName: String = "millenialsGradient"
+
 extension UIView {
     
     open var safeGuide: UILayoutGuide {
@@ -21,25 +23,11 @@ extension UIView {
     
     func hasCommonAncestor(to view: UIView) -> Bool {
         
-        if (self == view) || self.subviews.contains(where: {$0.subviews.contains($0)}) || view.subviews.contains(where: {(self.subviews.contains($0))}) {
-            
-            return true
-            
-        }
-        
-        return false 
-        
-    }
-    
-    func gradient(color1: UIColor, color2: UIColor) {
-        
-        let gradient = CAGradientLayer()
-        
-        gradient.frame = bounds
-        gradient.colors = [color1.cgColor, color2.cgColor]
-        gradient.name = "millenialsGradient"
-        
-        self.layer.addSublayer(gradient)
+        return(
+            (self == view) || // ancestor seria ela mesma?
+            self.subviews.contains(where: {$0.subviews.contains($0)}) ||
+            view.subviews.contains(where: {(self.subviews.contains($0))})
+        )
         
     }
     
@@ -55,12 +43,22 @@ extension UIView {
         
     }
     
+    func gradient(color1: UIColor, color2: UIColor) {
+        gradient(colors: [color1, color2])
+    }
+    
     func addMillenialsGradient() {
        
         let millenialsColors: [UIColor] = [.Purple, UIColor.Purple.withAlphaComponent(0.98)]
         
         gradient(colors: millenialsColors)
         
+    }
+    
+    func addMillenialsGradientIfNeeded() {
+        if let sublayers = layer.sublayers, !(sublayers.contains(where: { $0.name == gradientName })) {
+            addMillenialsGradient()
+        }
     }
     
     @available(iOS 10.0, *)

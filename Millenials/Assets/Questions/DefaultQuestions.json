@@ -1,5 +1,6 @@
 {
     "questions": [{
+            "id": 0,
             "level": 0,
             "statement": "Eu jamais ia estuprar você porque você não merece",
             "options": ["Donald Trump",
@@ -16,6 +17,7 @@
             "correctAnswer": "Jair Bolsonaro"
         },
         {
+            "id": 1,
             "level": 0,
             "statement": "Bandido bom, é bandido morto!",
             "options": ["Donald Trump",
@@ -33,6 +35,7 @@
             "correctAnswer": "Jair Bolsonaro"
         },
         {
+            "id": 2,
             "level": 0,
             "statement": "Seria incapaz de amar um filho homossexual. Prefiro que um filho meu morra num acidente do que apareça com um bigodudo por aí",
             "options": ["Ciro Gomes",
@@ -48,6 +51,7 @@
             "correctAnswer": "Jair Bolsonaro"
         },
         {
+            "id": 3,
             "level": 0,
             "statement": "O holocausto é a solução definitiva para os judeus",
             "options": ["Winston Churchill",
@@ -62,6 +66,7 @@
             "correctAnswer": "Adolf Hitler"
         },
         {
+            "id": 4,
             "level": 0,
             "statement": "Vou construir um grande muro(...). Marquem minhas palavras",
             "options": ["Josef Stalin",
@@ -80,6 +85,7 @@
             "correctAnswer": "Donald Trump"
         },
         {
+            "id": 5,
             "level": 0,
             "statement": "Não tem coisa mais fácil do que cuidar de pobre, no Brasil. Com R$ 10, o pobre se contenta",
             "options": ["Jair Bolsonaro",
@@ -98,6 +104,7 @@
             "correctAnswer": "Lula"
         },
         {
+            "id": 6,
             "level": 1,
             "statement": "Eu fui num quilombola(...). O afrodescendente mais leve lá pesava sete arrobas. Não fazem nada. Eu acho que nem pra procriadores servem mais",
             "options": ["Lula",
@@ -110,6 +117,7 @@
             "correctAnswer": "Jair Bolsonaro"
         },
         {
+            "id": 7,
             "level": 1,
             "statement": "As massas são femininas e idiotas",
             "options": ["Jair Bolsonaro",
@@ -128,6 +136,7 @@
             "correctAnswer": "Adolf Hitler"
         },
         {
+            "id": 8,
             "level": 1,
             "statement": "Eu gosto dos chineses. Eu vendi um apartamento por US$ 15 milhões para alguém da China. Como não gostar deles?",
             "options": ["Geraldo Alckmin",
@@ -141,6 +150,7 @@
             "correctAnswer": "Donald Trump"
         },
         {
+            "id": 9,
             "level": 1,
             "statement": "Quando você é uma estrela, te deixam fazer de tudo. Pegar na b*ta. Dá para fazer qualquer coisa",
             "options": ["Alexandre Frota",
@@ -158,6 +168,7 @@
             "correctAnswer": "Donald Trump"
         },
         {
+            "id": 10,
             "level": 1,
             "statement": "Eu poderia parar no meio da Quinta Avenida e atirar em alguém, e não perderia quaisquer eleitores, ok?",
             "options": ["Jair Bolsonaro",
@@ -175,6 +186,7 @@
             "correctAnswer": "Donald Trump"
         },
         {
+            "id": 11,
             "level": 1,
             "statement": "Feminismo? Eu acho que é coisa de quem não tem o que fazer",
             "options": ["Jair Bolsonaro",
@@ -192,6 +204,7 @@
             "correctAnswer": "Lula"
         },
         {
+            "id": 12,
             "level": 2,
             "statement": "Só não te estupro porque você não merece",
             "options": ["Donald Trump",
@@ -208,6 +221,7 @@
             "correctAnswer": "Jair Bolsonaro"
         },
         {
+            "id": 13,
             "level": 2,
             "statement": "Uma mulher não pode ser submissa ao homem por causa de um prato de comida. Tem que ser submissa porque gosta dele",
             "options": ["Jair Bolsonaro",
@@ -220,6 +234,7 @@
             "correctAnswer": "Lula"
         },
         {
+            "id": 14,
             "level": 2,
             "statement": "Quem chega em Windhoek não parece que está em um país africano. Poucas cidades do mundo são tão limpas, tão bonitas arquitetonicamente e tem um povo tão extraordinário como tem essa cidade",
             "options": ["Donald Trump",
@@ -238,6 +253,7 @@
             "correctAnswer": "Lula"
         },
         {
+            "id": 15,
             "level": 2,
             "statement": "O poder político nasce do cano da espingarda",
             "options": ["Che Guevara",
@@ -257,6 +273,7 @@
             "correctAnswer": "Mao Tsé-Tung"
         },
         {
+            "id": 16,
             "level": 2,
             "statement": "Ninguém mais é capaz de indicar os desajustes de preços no supermercado do que a mulher",
             "options": ["Donald Trump",
@@ -267,6 +284,7 @@
             "correctAnswer": "Michel Temer"
         },
         {
+            "id": 17,
             "level": 2,
             "statement": "Se você não tem fama de pegador e é solteiro, fica com fama de veado. Então, antes pegador que veado, né?",
             "options": ["Luan Santana",

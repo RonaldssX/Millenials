@@ -11,126 +11,49 @@ import UIKit
 var _currentPlayer: Player? { get { return Millenials.shared.currentPlayer } }
 var _currentQuestion: Question? { get { return Millenials.shared.currentPlayer?.currentQuestion } }
 
-fileprivate let maxRounds: Int = 3
+protocol MillenialsDataProtocol {
+    func receivePlayers(_ players: [Player])
+}
 
-protocol MillenialsProtocol {
-    var players: [Player] { get set }
-    var gameRound: Int { get set }
+protocol MillenialsInteractionsProtocol: AnyObject {
+    
+    func questionHasBeenAnswered(_ question: Question, answer: String, order: [String], time: Int)
+    func questionHasNotBeenAnswered(_ question: Question, order: [String])
     
 }
 
-protocol MillenialsGameProtocol {
+
+private protocol MillenialsGameFlowProtocol {
     func startGame()
-    func startRoumd()
-    func earlyEndGame()
+    func startRound()
+    func endRound()
     func endGame()
 }
 
-class Millenials {
+// MARK: - MillenialsDataProtocol conforms
+class Millenials: MillenialsDataProtocol {
     
     init() {
-        
-        self.gameRound = 0
         self.players = []
-        
+        self.gameRound = 0
+        self.gameHasEnded = false
     }
     
     static let shared = Millenials()
     
     var endGameResults: MillenialsResults?
     
-    var players: [Player] {
-        
-        willSet {
-            
-            guard (newValue.count == 0) else { return }
-            currentPlayer = nil 
-            
-        }
-        
-    }
+    var players: [Player]
+    var currentPlayer: Player?
     
-    var currentPlayer: Player? {
-        
-        willSet {
-            
-            guard (players.count != 0),
-                  (self.currentPlayer != players.last) else { return }
-            
-            self.currentPlayer?.hasPlayedRound = true
-            
-        }
-        
-        didSet {
-            
-            self.currentPlayer?.refreshCurrentQuestion()
-            WatchHandler.shared.sendUpdates()
-            
-        }
-        
-    }
+    var gameRound: Int
+    var gameHasEnded: Bool
     
-    var gameRound: Int {
-        
-        didSet {
-            
-            guard (self.gameRound > 0 && self.gameRound <= maxRounds) else { return }
-            for player in players { player.hasPlayedRound = false }
-            
-        }
-        
-    }
-    
-    var gameHasEnded: Bool = false
-    
-    func startGame() {
-        
-        gameRound = 1
-        gameHasEnded = false
-        refreshQuestions()
-        
-        guard (players.count != 0) else { return }
-        for _ in 1...10 { players = players.shuffled() }
-        currentPlayer = players.first
-        
-    }
-    
-    func playerFinished() {
-        
-        currentPlayer?.hasPlayedRound = true
-        changePlayer()
-        
-    }
-    
-    func endRound() {
-        guard (players.allSatisfy({ $0.hasPlayedRound })) else { return }
-        guard (gameRound != maxRounds) else { return endGame() }
-        
-        gameRound++
-        for player in players { player.hasPlayedRound = false }
-        refreshQuestions()
-        
-    }
-    
-    func earlyEndGame() {
-        
-        players = []
-        currentPlayer = nil
-        gameRound = 0
-        gameHasEnded = false
-        Questions.shared.resetQuestions()
-        
-    }
-    
-    func endGame() {
-        
-        gameHasEnded = true
-        self.endGameResults = MillenialsResults(winner: checkResults())
-        
+    func receivePlayers(_ players: [Player]) {
+        self.players = players
     }
     
     func prepareForNextGame() {
-        
         endGameResults = nil
         players.removeAll()
         currentPlayer = nil
@@ -138,41 +61,91 @@ class Millenials {
         gameHasEnded = false
         
         Questions.shared.resetQuestions()
-        
     }
 
 }
 
-extension Millenials {
+// MARK: - MillenialsInteractionsProtocol conforms
+extension Millenials: MillenialsInteractionsProtocol {
+    
+    func questionHasBeenAnswered(_ question: Question, answer: String, order: [String], time: Int) {
+        let answeredQuestion = answeredQuestion(question, player: currentPlayer!, answer: answer, order: order, time: time)
+        currentPlayer?.playerDidAnswer(question: answeredQuestion)
+    }
+    
+    func questionHasNotBeenAnswered(_ question: Question, order: [String]) {
+        let unansweredQuestion = answeredQuestion(question, player: currentPlayer!, answer: nil, order: order, time: GameConfigs.shared.millenialsConfig.timerDuration)
+        currentPlayer?.playerDidNotAnswer(question: unansweredQuestion)
+    }
+    
+    func playerFinished() {
+        currentPlayer?.playerFinishedPlayingCurrentRound(gameRound)
+        changePlayer()
+    }
+    
+    private func answeredQuestion(_ question: Question, player: Player, answer: String?, order: [String], time: Int) -> AnsweredQuestion {
+        let answeredQuestionExtraData: [String: Any] = ["id": question.id, "order": order, "time": time]
+        let answeredQuestion = question.answered(answer, player: player, additionalData: answeredQuestionExtraData)
+        return answeredQuestion
+    }
+    
+}
+
+// MARK: - MillenialsGameFlowProtocol conforms
+extension Millenials: MillenialsGameFlowProtocol {
+ 
+    func startGame() {
+        gameHasEnded = false
+        if (GameConfigs.millenialsConfig.shouldShufflePlayers) {
+            for _ in 1...10 { players = players.shuffled() }
+        }
+        currentPlayer = players.first
+        startRound()
+    }
+    
+    func startRound() {
+        if (gameRound >= GameConfigs.millenialsConfig.numberOfRounds) { return endGame() }
+        gameRound++
+        refreshQuestions()
+    }
+    
+    func endRound() {
+        guard (players.allSatisfy({ $0.hasPlayedRound })) else { return }
+        players.forEach { player in player.hasPlayedRound = false }
+        startRound()
+    }
+    
+    func endGame() {
+        gameHasEnded = true
+        self.endGameResults = MillenialsResults(winner: nil)
+    }
     
     private func refreshQuestions() {
-            
-        Questions.shared.newQuestions(round: gameRound)
-        for player in players { player.questions = Questions.shared.roundQuestions.shuffled() }
-
+        let questions = Questions.shared.newQuestions(round: gameRound)
+        for player in players { player.playerReceivedRoundQuestions(questions.shuffled()) }
     }
     
-    @objc
     private func changePlayer() {
-        
         guard (players.count != 0) else { return }
-        currentPlayer = players.first() { $0 != currentPlayer }
-        endRound()
-        
+        // removemos o atual jogador
+        // e colocamos ele de volta no final da lista
+        let lastPlayer = players.removeFirst()
+        players.append(lastPlayer)
+        // pegamos o primeiro jogador da lista
+        let player = players.first!
+        // se ele já jogou esse round, todos já jogaram
+        if (player.hasPlayedRound) {
+            endRound()
+        }
+        currentPlayer = player
     }
     
-    private func checkResults() -> Player? {
-        
-        let hasWinner: (Bool, Player?) = {
-            guard players.count >= 2 else { return (false, nil) }
-            
-            if (players[0].points == players[1].points) { return (false, nil) }
-            
-            let winningPlayer = players.sorted() { $0.points > $1.points }[0]
-            return (true, winningPlayer)
-            
-        }()
-        return hasWinner.1
-    }    
 }
 
+struct Round {
+    
+    var players: [Player] = []
+    var questions: [Question] = []
+    var answers: [Player: AnsweredQuestion] = [:]
+    
+}

@@ -8,12 +8,14 @@
 
 import UIKit
 
-public final class PlayerPictures {
+struct PlayerPictures {
     
-    static let shared = PlayerPictures()
+    static let defaultAdd = UIImage(named: "Player_Add")!
+    static let defaultGame = UIImage(named: "Player_Default")!
     
-    let defaultAdd = UIImage(named: "Player_Add")!
-    let defaultGame = UIImage(named: "Player_Default")!
+    static func isDefaultPicture(_ image: UIImage?) -> Bool {
+        return image == defaultAdd || image == defaultGame
+    }
     
 }
 
@@ -110,7 +112,7 @@ final class ImageController: NSObject, UIImagePickerControllerDelegate, UINaviga
     fileprivate func useDefaultPicture() {
         
         rootViewController?.view?.layoutSubviews()
-        callback?(PlayerPictures.shared.defaultGame)
+        callback?(PlayerPictures.defaultGame)
         actionSheet?.dismissView()
         actionSheet = nil
         

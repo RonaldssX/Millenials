@@ -17,11 +17,6 @@ fileprivate let TextFieldIcon: UIImage = {
     }
 }()
 
-fileprivate let _defaultGame = PlayerPictures.shared.defaultGame
-fileprivate let _defaultAdd = PlayerPictures.shared.defaultAdd
-
-fileprivate let defaultPictures: [UIImage] = [_defaultGame, _defaultAdd]
-
 class PlayerSetupView: UIView {    
     
     public weak var rootViewController: UIViewController? {
@@ -44,7 +39,7 @@ class PlayerSetupView: UIView {
                   (playerPictureView != nil) else { return }
             
             playerPictureView.image = self.playerPicture?.scaled(to: playerPictureView!.bounds.size)
-            if !(defaultPictures.contains(self.playerPicture!)) {
+            if !(PlayerPictures.isDefaultPicture(playerPicture)) {
                 playerPictureView!.layer.borderWidth = 0.0
                 return
             }
@@ -60,7 +55,7 @@ class PlayerSetupView: UIView {
         get {
             
             guard (playerPicture != nil) else { return true }
-            return (playerPicture! == _defaultAdd)
+            return (playerPicture! == PlayerPictures.defaultAdd)
             
         }
         

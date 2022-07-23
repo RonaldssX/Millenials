@@ -8,13 +8,24 @@
 
 import UIKit // QuestionStatsSegue
 
-internal var questionCountdownTime: Int = 20
+protocol QuestionVCProtocol {
+    func configure(with questions: [Question], delegate: MillenialsInteractionsProtocol)
+}
 
-final class QuestionVC: UIViewController {
+final class QuestionVC: UIViewController, QuestionVCProtocol {
     
     private var shouldReset: Bool = false
     private var hasStartedTimer: Bool = false
     private var hasPerformedAnimation: Bool = false
+    
+    private var questions: [Question] = []
+    private var currentQuestion: Question {
+        get { return questions[displayIndex] }
+    }
+    
+    private weak var delegate: MillenialsInteractionsProtocol?
+    
+    var displayIndex: Int = 0
     
     private var questionConstraint: NSLayoutConstraint? // 30
     private var questionView: UIView! {
@@ -28,14 +39,14 @@ final class QuestionVC: UIViewController {
             self.questionView.layer.cornerRadius = 10.0
             self.questionView.clipsToBounds = true
             self.questionView.backgroundColor = .OffWhite
-            
+            /*
             if MDebug.shared.shouldDebug && MDebug.shared.mods.contains(.infiniteQuestions) {
                 let tap = UITapGestureRecognizer()
                 tap.addTarget(self, action: #selector(answerAllQuestions))
                 tap.numberOfTouchesRequired = 1
                 tap.numberOfTapsRequired = 2
                 self.questionView.addGestureRecognizer(tap)
-            }
+            }*/
             
             view.addSubview(self.questionView)
             self.questionView.translatesAutoresizingMaskIntoConstraints = false
@@ -54,7 +65,7 @@ final class QuestionVC: UIViewController {
             self.questionLabel.backgroundColor = questionView.backgroundColor
             self.questionLabel.font = .defaultFont(size: 20, weight: .medium)
             self.questionLabel.numberOfLines = 0
-            self.questionLabel.text = _currentQuestion?.statement
+            self.questionLabel.text = currentQuestion.statement
             self.questionLabel.textAlignment = .center
             self.questionLabel.textColor = .OffBlack
             
@@ -92,33 +103,36 @@ final class QuestionVC: UIViewController {
     }
     
     var buttons: [UIButton] = []
+    
+    func configure(with questions: [Question], delegate: MillenialsInteractionsProtocol) {
+        self.questions = questions
+        self.delegate = delegate
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         edgesForExtendedLayout = .all
         
-//        configureView()
-//        if MDebug.shared.shouldDebug && MDebug.shared.mods.contains(.infiniteQuestions) {
-//            let tap = UITapGestureRecognizer()
-//            tap.addTarget(self, action: #selector(answerAllQuestions))
-//            tap.numberOfTouchesRequired = 1
-//            tap.numberOfTapsRequired = 2
-//            questionView.addGestureRecognizer(tap)
-//        }
-        
         NotificationCenter.default.addObserver(self, selector: #selector(playerNotAnswered), name: notification(name: "PlayerDidNotAnswerInTime"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateViewBasedOnLayout), name: UIDevice.orientationDidChangeNotification, object: nil)
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    
     @objc
     private func answerAllQuestions(_ sender: UITapGestureRecognizer) {
+        return;
+        /*
         guard (questionView.gestureRecognizers?.contains(sender) ?? false),
             (MDebug.shared.shouldDebug),
             (MDebug.shared.mods.contains(.infiniteQuestions)) else { return }
-        
-        _currentPlayer?.answerAllQuestions()
+        */
+        //_currentPlayer?.answerAllQuestions()
         refresh()
         
     }
@@ -133,7 +147,7 @@ final class QuestionVC: UIViewController {
         self.questionLabel = UILabel()
         self.buttonStackView = UIStackView()
         
-        while buttons.count != _currentQuestion?.answers.count {
+        while buttons.count != currentQuestion.answers.count {
             addBtn()
         }
         
@@ -228,7 +242,6 @@ final class QuestionVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if MDebug.shared.shouldDebug && MDebug.shared.mods.contains(.noQuestionTimer) { return }
         
         guard hasPerformedAnimation else { return }
         if let barTimer = navigationItem.rightBarButtonItem as? BarTimer {
@@ -293,7 +306,7 @@ final class QuestionVC: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         OrientationManager.lockPortrait()
-        if MDebug.shared.shouldDebug && MDebug.shared.mods.contains(.noQuestionTimer) { return }
+        //if MDebug.shared.shouldDebug && MDebug.shared.mods.contains(.noQuestionTimer) { return }
         shouldReset ? stopTimer() : freezeTimer()
     }
     
@@ -301,29 +314,29 @@ final class QuestionVC: UIViewController {
     private func playerNotAnswered() {
         
         buttons.disableInteraction()
+        delegate?.questionHasNotBeenAnswered(currentQuestion, order: getAnswerOrder())
         noAnswer()
-        
+        displayIndex++
     }
     
     @objc
-    private func playerAnswered(_ button: UIButton? = nil) {
+    private func playerAnswered(_ button: UIButton) {
         buttons.disableInteraction()
         
         if let timer = navigationItem.rightBarButtonItem as? BarTimer { timer.endTimer() }
-        let playerAnswer = button?.title(for: .normal)
-        if (_currentQuestion?.correctAnswer == playerAnswer) {
-            correctAnswer(button!)
+        let playerAnswer = button.title(for: .normal)!
+        delegate?.questionHasBeenAnswered(currentQuestion, answer: playerAnswer, order: getAnswerOrder(), time: 0)
+        if (currentQuestion.correctAnswer == playerAnswer) {
+            correctAnswer(button)
         } else {
-            wrongAnswer(button!)
+            wrongAnswer(button)
         }
-        
+        displayIndex++
     }
     
     func refresh() {
         
-        _currentPlayer?.refreshCurrentQuestion()
-        
-        guard (_currentPlayer!.questions.count > 0) else {
+        guard (displayIndex < questions.count) else {
             shouldReset = true
             return displayPlayerStats()
         }
@@ -361,15 +374,14 @@ extension QuestionVC {
     
     func updateNavItemTitle() {
         
-        let remainingQuestions = _currentPlayer!.questions.count
-        let totalQuestions = Questions.shared.roundQuestions.count
+        let totalQuestions = questions.count
         
         let fadeAnim = CATransition()
         fadeAnim.duration = 0.2
         fadeAnim.type = .fade
         
         navigationController?.navigationBar.layer.add(fadeAnim, forKey: "fadeText")
-        navigationItem.title = localized("Question") + " \((totalQuestions + 1) - remainingQuestions)/\(totalQuestions)"
+        navigationItem.title = localized("Question") + " \(displayIndex + 1)/\(totalQuestions)"
         
     }
     
@@ -400,7 +412,7 @@ extension QuestionVC {
         }
         
         var count = 0
-        while count != _currentQuestion?.answers.count {
+        while count != self.currentQuestion.answers.count {
             count++
             let newButton = self.addBtn()
             newButton.alpha = 0.0
@@ -408,7 +420,7 @@ extension QuestionVC {
         }
         
         self.buttons.updateAnswers()
-        self.questionLabel.text = _currentQuestion!.statement
+        self.questionLabel.text = self.currentQuestion.statement
         
             UIView.animate(withDuration: 0.2, animations: {
                 
@@ -441,10 +453,23 @@ extension QuestionVC {
             
         }, completion: {_ in
             OrientationManager.lockPortrait()
-            self.performSegue(withIdentifier: "QuestionStatsSegue", sender: nil)
+            self.navigate()
             
         })
         
+    }
+    
+    private func navigate() {
+        if (GameConfigs.shared.tempShouldUseSegues) {
+            performSegue(withIdentifier: "QuestionStatsSegue", sender: nil)
+        } else {
+            NotificationCenter.default.post(name: "next")
+            /*
+            let reportVC = PlayerRoundReportVC()
+            reportVC.player = player
+            navigationController?.pushViewController(reportVC, animated: false)
+             */
+        }
     }
     
     
@@ -452,7 +477,7 @@ extension QuestionVC {
 
 extension QuestionVC {
     
-    @nonobjc
+
     private func getAnswerOrder() -> [String] {
         var answers: [String] = []
         
@@ -469,8 +494,6 @@ extension QuestionVC {
         
         displayCorrectAnswer()
         
-        _currentPlayer?.questionAnswered(order: getAnswerOrder())
-        
         HapticFeedback.shared.warningFeedback()
         AudioFeedback.shared.noAnswerFeedback()
         
@@ -484,8 +507,6 @@ extension QuestionVC {
         displayCorrectAnswer()
         btn.animateColor(final: .Red)
         
-        _currentPlayer?.questionAnswered(answer: btn.title(for: .normal), order: getAnswerOrder())
-        
         HapticFeedback.shared.errorFeedback()
         AudioFeedback.shared.errorFeedback()
         
@@ -496,7 +517,6 @@ extension QuestionVC {
     @objc
     func correctAnswer(_ btn: UIButton) {
         
-        _currentPlayer?.questionAnswered(answer: _currentQuestion?.correctAnswer, order: getAnswerOrder())
         displayCorrectAnswer(btn)
         
         HapticFeedback.shared.sucessFeedback()
@@ -519,7 +539,7 @@ extension QuestionVC {
         
         guard (button == nil) else { return button!.animateColor(final: .Green) }
         
-        let correctAnswer = _currentQuestion?.correctAnswer
+        let correctAnswer = currentQuestion.correctAnswer
         let correctButton: UIButton? = buttons.first() { $0.title(for: .normal) == correctAnswer }
         correctButton?.animateColor(final: .Green)
         

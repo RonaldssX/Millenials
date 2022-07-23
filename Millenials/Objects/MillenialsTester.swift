@@ -101,7 +101,7 @@ final class MillenialsTester: NSObject {
         
         guard let playerChangeVC = currentViewController as? PlayerChangeVC else { return }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute: { playerChangeVC.answerQuestionsButton.sendActions(for: .touchUpInside) })
+        //DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute: { playerChangeVC.answerQuestionsButton.sendActions(for: .touchUpInside) })
         
     }
     

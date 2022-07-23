@@ -6,30 +6,6 @@
 //  Copyright © 2019 Ronaldo Santana. All rights reserved.
 //
 
-import UIKit
-/*
-protocol QuestionProtocol: AnyObject, Hashable {
-    
-    var level: QuestionLevel { get }
-    var value: Int { get }
-    var statement: String { get }
-    var answers: [String] { get }
-    var correctAnswer: String { get }
-    
-    var answeredStore: AnsweredQuestionProtocol? { get set }
-    
-    func answered(_ playerAnswer: String?, multiplier: Int) -> AnsweredQuestionProtocol
-    
-}
-
-extension QuestionProtocol {
-    
-    static func == (lhs: Self, rhs: Self) -> Bool { return lhs.statement == rhs.statement }
-    func hash(into hasher: inout Hasher) { for property in [statement as AnyHashable, answers as AnyHashable] {hasher.combine(property)} }
-    
-}
- 
-*/
 enum QuestionLevel: Int, CaseIterable, Codable {
     
     case Easy = 0
@@ -46,12 +22,17 @@ enum QuestionLevel: Int, CaseIterable, Codable {
     }
     
 }
+
 final class Question: Decodable, Hashable {
     
     enum CodingKeys: String, CodingKey {
-        case level, statement, correctAnswer
-        case answers = "options"
+        case id, level, statement, correctAnswer
+        case answersStore = "options"
     }
+    /*
+        // identificador unico para a questao
+     */
+    var id: Int
     
     /*
      // nível de dificuldade
@@ -69,9 +50,9 @@ final class Question: Decodable, Hashable {
     var value: Int {
         get {
             switch level {
-            case .Easy: return 100
-            case .Medium: return 200
-            case .Hard: return 400
+            case .Easy: return GameConfigs.questionsConfig.easyValue
+            case .Medium: return GameConfigs.questionsConfig.mediumValue
+            case .Hard: return GameConfigs.questionsConfig.hardValue
             }
         }
     }
@@ -88,27 +69,32 @@ final class Question: Decodable, Hashable {
     var correctAnswer: String
     
     /*
-     // todas as respostas, incluindo a
-     // resposta certa (que fica sempre
-     // no index 0)
+     // todas as opções de resposta
     */
-    var answers: [String]
-    
-    var answeredStore: AnsweredQuestion?
+    private var answersStore: [String] = []
+    var answers: [String] {
+        get {
+            return ([correctAnswer] + answersStore)
+        }
+        set {
+            answersStore = newValue
+        }
+    }
     
     init(level: QuestionLevel, statement: String, answers: [String], correctAnswer: String) {
+        self.id = -1
         self.level = level
         self.statement = statement
         self.correctAnswer = correctAnswer
         self.answers = answers
     }
     
-    func answered(_ playerAnswer: String?, multiplier: Int, additionalData: [String: Any]?) -> AnsweredQuestion {
-        if let answeredStore = answeredStore { return answeredStore }
+    func answered(_ playerAnswer: String?, player: Player, additionalData: [String: Any]?) -> AnsweredQuestion {
         let answer = AnsweredQuestion()
         answer.question = self
-        answer.configure(with: playerAnswer, multiplier: 1, additionalData: additionalData)
-        self.answeredStore = answer
+        answer.player = player
+        answer.configure(with: playerAnswer, multiplier: player.multiplier, additionalData: additionalData)
+        answer.extraData["id"] = self.id
         return answer
     }
     

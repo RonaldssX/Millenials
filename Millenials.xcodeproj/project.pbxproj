@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -38,7 +38,7 @@
 		463BBD3A239FE052005F5934 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD2E239FE052005F5934 /* UIColor.swift */; };
 		463BBD3F239FE0B0005F5934 /* Millenials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD3B239FE0B0005F5934 /* Millenials.swift */; };
 		463BBD40239FE0B0005F5934 /* QuestionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD3C239FE0B0005F5934 /* QuestionData.swift */; };
-		463BBD41239FE0B0005F5934 /* Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD3D239FE0B0005F5934 /* Questions.swift */; };
+		463BBD41239FE0B0005F5934 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD3D239FE0B0005F5934 /* Question.swift */; };
 		463BBD42239FE0B0005F5934 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD3E239FE0B0005F5934 /* Player.swift */; };
 		463BBD45239FE0BF005F5934 /* DeviceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD43239FE0BF005F5934 /* DeviceType.swift */; };
 		463BBD46239FE0BF005F5934 /* DisplayTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD44239FE0BF005F5934 /* DisplayTheme.swift */; };
@@ -71,45 +71,30 @@
 		468619DD229709930077CE70 /* ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 468619D3229708430077CE70 /* ExtraLight.ttf */; };
 		468619DE229709930077CE70 /* Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 468619D5229708430077CE70 /* Thin.ttf */; };
 		468822CA22A3FCFE00E971CB /* WinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468822C922A3FCFE00E971CB /* WinnerView.swift */; };
-		468C200F24348F8E00C11805 /* ConnectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468C200E24348F8E00C11805 /* ConnectionHandler.swift */; };
 		468C20112434924A00C11805 /* WatchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468C20102434924A00C11805 /* WatchHandler.swift */; };
-		468C201224349AAA00C11805 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 463BBD0C239FDDB1005F5934 /* Assets.xcassets */; };
-		468C201324349AAC00C11805 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 463BBD0C239FDDB1005F5934 /* Assets.xcassets */; };
 		46905E87229AD363006D0E0C /* PlayerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46905E86229AD363006D0E0C /* PlayerSegue.swift */; };
 		46965997239C4C7D003F38FD /* OrientationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46965996239C4C7D003F38FD /* OrientationManager.swift */; };
-		46AA8DA42418684A00838CCB /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46AA8DA22418684A00838CCB /* Interface.storyboard */; };
-		46AA8DA62418684C00838CCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46AA8DA52418684C00838CCB /* Assets.xcassets */; };
-		46AA8DAD2418684C00838CCB /* Millenials watchOS Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 46AA8DAC2418684C00838CCB /* Millenials watchOS Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		46AA8DB22418684C00838CCB /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AA8DB12418684C00838CCB /* InterfaceController.swift */; };
-		46AA8DB42418684C00838CCB /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AA8DB32418684C00838CCB /* ExtensionDelegate.swift */; };
-		46AA8DB62418684D00838CCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46AA8DB52418684D00838CCB /* Assets.xcassets */; };
-		46AA8DBA2418684D00838CCB /* Millenials watchOS.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 46AA8DA02418684A00838CCB /* Millenials watchOS.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		46A5F9EE288700100024D082 /* GameConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A5F9ED288700100024D082 /* GameConfigs.swift */; };
+		46A5F9F22887019A0024D082 /* AppConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A5F9F12887019A0024D082 /* AppConfigs.swift */; };
+		46A5F9F4288708070024D082 /* DefaultConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 46A5F9F3288708070024D082 /* DefaultConfig.json */; };
+		46B09A34288880DD00B1D45E /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B09A33288880DD00B1D45E /* IntroView.swift */; };
+		46B09A36288881B800B1D45E /* IntroFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B09A35288881B800B1D45E /* IntroFactory.swift */; };
+		46B09A382888821100B1D45E /* IntroInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B09A372888821100B1D45E /* IntroInteractor.swift */; };
+		46B09A3A2888828D00B1D45E /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B09A392888828D00B1D45E /* IntroViewController.swift */; };
+		46B09A3C288883B800B1D45E /* IntroPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B09A3B288883B800B1D45E /* IntroPresenter.swift */; };
+		46B09A3E288896E200B1D45E /* IntroViewTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B09A3D288896E200B1D45E /* IntroViewTokens.swift */; };
 		46BEAEA82886DEFF00305798 /* AnsweredQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BEAEA72886DEFF00305798 /* AnsweredQuestion.swift */; };
 		46C25B11239C377400CEB580 /* AboutMeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C25B10239C377400CEB580 /* AboutMeVC.swift */; };
+		46D7381C288849EF0035BF08 /* PlayerStatsViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D7381B288849EF0035BF08 /* PlayerStatsViewStyle.swift */; };
+		46D7381E28885AF40035BF08 /* PlayerStatsAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D7381D28885AF40035BF08 /* PlayerStatsAccessoryView.swift */; };
 		46DAA35A23C8897D005319D9 /* OpenAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DAA35923C8897D005319D9 /* OpenAnimator.swift */; };
 		46DE37D122A57D6900914493 /* TieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DE37D022A57D6900914493 /* TieView.swift */; };
 		46DE37D322A5846700914493 /* noAnswer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 46DE37D222A5846600914493 /* noAnswer.mp3 */; };
 		46E3FF59229986160044A7EB /* LastQuestionSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E3FF58229986160044A7EB /* LastQuestionSegue.swift */; };
-		46E70BCC237AE276000E6900 /* MDebugMaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E70BCB237AE276000E6900 /* MDebugMaster.swift */; };
+		46FC5C6628899F4900275539 /* Watcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FC5C6528899F4900275539 /* Watcher.swift */; };
+		46FC5C6E2889FD7200275539 /* GameSceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FC5C6D2889FD7200275539 /* GameSceneCoordinator.swift */; };
 		46FD19212378AE7C00AE848B /* QuestionSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FD19202378AE7B00AE848B /* QuestionSegue.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		46AA8DAE2418684C00838CCB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 46BC7F22224A80DF00288AC9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 46AA8DAB2418684C00838CCB;
-			remoteInfo = "Millenials watchOS Extension";
-		};
-		46AA8DB82418684D00838CCB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 46BC7F22224A80DF00288AC9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 46AA8D9F2418684A00838CCB;
-			remoteInfo = "Millenials watchOS";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		463874102418491A0087B9F1 /* Embed Watch Content */ = {
@@ -118,20 +103,8 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				46AA8DBA2418684D00838CCB /* Millenials watchOS.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		46AA8DBE2418684D00838CCB /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				46AA8DAD2418684C00838CCB /* Millenials watchOS Extension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -171,7 +144,7 @@
 		463BBD2E239FE052005F5934 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		463BBD3B239FE0B0005F5934 /* Millenials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Millenials.swift; sourceTree = "<group>"; };
 		463BBD3C239FE0B0005F5934 /* QuestionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionData.swift; sourceTree = "<group>"; };
-		463BBD3D239FE0B0005F5934 /* Questions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
+		463BBD3D239FE0B0005F5934 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		463BBD3E239FE0B0005F5934 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		463BBD43239FE0BF005F5934 /* DeviceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceType.swift; sourceTree = "<group>"; };
 		463BBD44239FE0BF005F5934 /* DisplayTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayTheme.swift; sourceTree = "<group>"; };
@@ -204,19 +177,18 @@
 		468619D4229708430077CE70 /* Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Regular.ttf; sourceTree = "<group>"; };
 		468619D5229708430077CE70 /* Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Thin.ttf; sourceTree = "<group>"; };
 		468822C922A3FCFE00E971CB /* WinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WinnerView.swift; path = "Millenials/Custom Views/End Game Views/WinnerView.swift"; sourceTree = SOURCE_ROOT; };
-		468C200E24348F8E00C11805 /* ConnectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionHandler.swift; sourceTree = "<group>"; };
 		468C20102434924A00C11805 /* WatchHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchHandler.swift; sourceTree = "<group>"; };
 		46905E86229AD363006D0E0C /* PlayerSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSegue.swift; sourceTree = "<group>"; };
 		46965996239C4C7D003F38FD /* OrientationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationManager.swift; sourceTree = "<group>"; };
-		46AA8DA02418684A00838CCB /* Millenials watchOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Millenials watchOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		46AA8DA32418684A00838CCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
-		46AA8DA52418684C00838CCB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		46AA8DA72418684C00838CCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		46AA8DAC2418684C00838CCB /* Millenials watchOS Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Millenials watchOS Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		46AA8DB12418684C00838CCB /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
-		46AA8DB32418684C00838CCB /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
-		46AA8DB52418684D00838CCB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		46AA8DB72418684D00838CCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		46A5F9ED288700100024D082 /* GameConfigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameConfigs.swift; sourceTree = "<group>"; };
+		46A5F9F12887019A0024D082 /* AppConfigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigs.swift; sourceTree = "<group>"; };
+		46A5F9F3288708070024D082 /* DefaultConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DefaultConfig.json; sourceTree = "<group>"; };
+		46B09A33288880DD00B1D45E /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
+		46B09A35288881B800B1D45E /* IntroFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFactory.swift; sourceTree = "<group>"; };
+		46B09A372888821100B1D45E /* IntroInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroInteractor.swift; sourceTree = "<group>"; };
+		46B09A392888828D00B1D45E /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
+		46B09A3B288883B800B1D45E /* IntroPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroPresenter.swift; sourceTree = "<group>"; };
+		46B09A3D288896E200B1D45E /* IntroViewTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewTokens.swift; sourceTree = "<group>"; };
 		46BC7F2A224A80E000288AC9 /* Millenials.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Millenials.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46BEAEA72886DEFF00305798 /* AnsweredQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnsweredQuestion.swift; sourceTree = "<group>"; };
 		46C1A37222A5F92700CBE40B /* Python3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Python3.framework; path = Library/Frameworks/Python3.framework; sourceTree = DEVELOPER_DIR; };
@@ -232,22 +204,18 @@
 		46C4A30B238D0BCC00AEBF14 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		46C4A30C238D0BCD00AEBF14 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		46D2021D23E0A2CE00BB959F /* Millenials.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Millenials.entitlements; path = Millenials/Millenials.entitlements; sourceTree = SOURCE_ROOT; };
+		46D7381B288849EF0035BF08 /* PlayerStatsViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStatsViewStyle.swift; sourceTree = "<group>"; };
+		46D7381D28885AF40035BF08 /* PlayerStatsAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStatsAccessoryView.swift; sourceTree = "<group>"; };
 		46DAA35923C8897D005319D9 /* OpenAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAnimator.swift; sourceTree = "<group>"; };
 		46DE37D022A57D6900914493 /* TieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TieView.swift; sourceTree = "<group>"; };
 		46DE37D222A5846600914493 /* noAnswer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = noAnswer.mp3; sourceTree = "<group>"; };
 		46E3FF58229986160044A7EB /* LastQuestionSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastQuestionSegue.swift; sourceTree = "<group>"; };
-		46E70BCB237AE276000E6900 /* MDebugMaster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MDebugMaster.swift; sourceTree = "<group>"; };
+		46FC5C6528899F4900275539 /* Watcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Watcher.swift; sourceTree = "<group>"; };
+		46FC5C6D2889FD7200275539 /* GameSceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneCoordinator.swift; sourceTree = "<group>"; };
 		46FD19202378AE7B00AE848B /* QuestionSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionSegue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		46AA8DA92418684C00838CCB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		46BC7F27224A80E000288AC9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -293,6 +261,7 @@
 		4619934F22A46A7700B73136 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				46A5F9EF288700280024D082 /* Configs */,
 				467C01A62886F7CD00D38F7B /* Questions */,
 				463BBD0C239FDDB1005F5934 /* Assets.xcassets */,
 				46BB9F24226E9074004274BD /* Fonts */,
@@ -334,6 +303,7 @@
 		46414679224D585D00E0B0B0 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				46A5F9F02887018D0024D082 /* Configs */,
 				46E70BCA237AE263000E6900 /* Debug */,
 				460B36732287BC0500FD7965 /* Game */,
 				463BBD53239FE141005F5934 /* AudioFeedback.swift */,
@@ -345,6 +315,7 @@
 				463BBD48239FE0D0005F5934 /* Name.swift */,
 				463BBD4D239FE0D5005F5934 /* ProfilePicture.swift */,
 				468C20102434924A00C11805 /* WatchHandler.swift */,
+				46FC5C6528899F4900275539 /* Watcher.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -352,6 +323,7 @@
 		466B5B5F2263ADCE009D21C8 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				46D7381A288849D30035BF08 /* PlayerStatsView */,
 				46DE37CF22A57D5C00914493 /* End Game Views */,
 				4619935022A46D2A00B73136 /* Alerts */,
 				463BBD1D239FE009005F5934 /* FlatTextField.swift */,
@@ -359,7 +331,6 @@
 				463BBD1C239FE008005F5934 /* PlayerSetupView.swift */,
 				463BBD1B239FE008005F5934 /* QuestionReportCell.swift */,
 				463BBD19239FDFFB005F5934 /* AddedPointsView.swift */,
-				463BBD50239FE136005F5934 /* PlayerStatsView.swift */,
 				463BBD4F239FE136005F5934 /* PlayerView.swift */,
 			);
 			path = "Custom Views";
@@ -373,20 +344,27 @@
 			path = Questions;
 			sourceTree = "<group>";
 		};
-		468C27CF225684D000898202 /* View Controllers */ = {
+		467E7193288A1FEC00DAFD2E /* Conclusion */ = {
 			isa = PBXGroup;
 			children = (
+				463BBD60239FE1D7005F5934 /* ConclusionVC.swift */,
+			);
+			path = Conclusion;
+			sourceTree = "<group>";
+		};
+		468C27CF225684D000898202 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				46B09A322888806E00B1D45E /* Intro */,
+				46FC5C672889FCBA00275539 /* PlayersSetup */,
+				46FC5C6A2889FD1600275539 /* Game */,
 				46C25B10239C377400CEB580 /* AboutMeVC.swift */,
 				463BBD59239FE1D7005F5934 /* NavigationVC.swift */,
 				463BBD5C239FE1D7005F5934 /* IntroVC.swift */,
 				463BBD5D239FE1D7005F5934 /* PlayersVC.swift */,
-				463BBD5E239FE1D7005F5934 /* PlayerChangeVC.swift */,
-				463BBD5F239FE1D7005F5934 /* QuestionVC.swift */,
-				463BBD5B239FE1D7005F5934 /* PlayerRoundReportVC.swift */,
 				463BBD5A239FE1D7005F5934 /* AnsweredQuestionPreviewVC.swift */,
-				463BBD60239FE1D7005F5934 /* ConclusionVC.swift */,
 			);
-			path = "View Controllers";
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 		468C27D2225684E900898202 /* Extensions */ = {
@@ -410,26 +388,34 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		46AA8DA12418684A00838CCB /* Millenials watchOS */ = {
+		46A5F9EF288700280024D082 /* Configs */ = {
 			isa = PBXGroup;
 			children = (
-				46AA8DA22418684A00838CCB /* Interface.storyboard */,
-				46AA8DA52418684C00838CCB /* Assets.xcassets */,
-				46AA8DA72418684C00838CCB /* Info.plist */,
+				46A5F9F3288708070024D082 /* DefaultConfig.json */,
 			);
-			path = "Millenials watchOS";
+			path = Configs;
 			sourceTree = "<group>";
 		};
-		46AA8DB02418684C00838CCB /* Millenials watchOS Extension */ = {
+		46A5F9F02887018D0024D082 /* Configs */ = {
 			isa = PBXGroup;
 			children = (
-				46AA8DB12418684C00838CCB /* InterfaceController.swift */,
-				46AA8DB32418684C00838CCB /* ExtensionDelegate.swift */,
-				46AA8DB52418684D00838CCB /* Assets.xcassets */,
-				46AA8DB72418684D00838CCB /* Info.plist */,
-				468C200E24348F8E00C11805 /* ConnectionHandler.swift */,
+				46A5F9ED288700100024D082 /* GameConfigs.swift */,
+				46A5F9F12887019A0024D082 /* AppConfigs.swift */,
 			);
-			path = "Millenials watchOS Extension";
+			path = Configs;
+			sourceTree = "<group>";
+		};
+		46B09A322888806E00B1D45E /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				46B09A35288881B800B1D45E /* IntroFactory.swift */,
+				46B09A3B288883B800B1D45E /* IntroPresenter.swift */,
+				46B09A372888821100B1D45E /* IntroInteractor.swift */,
+				46B09A33288880DD00B1D45E /* IntroView.swift */,
+				46B09A3D288896E200B1D45E /* IntroViewTokens.swift */,
+				46B09A392888828D00B1D45E /* IntroViewController.swift */,
+			);
+			path = Intro;
 			sourceTree = "<group>";
 		};
 		46BB9F24226E9074004274BD /* Fonts */ = {
@@ -452,8 +438,6 @@
 			isa = PBXGroup;
 			children = (
 				46BC7F2C224A80E000288AC9 /* Millenials */,
-				46AA8DA12418684A00838CCB /* Millenials watchOS */,
-				46AA8DB02418684C00838CCB /* Millenials watchOS Extension */,
 				46BC7F2B224A80E000288AC9 /* Products */,
 				46C1A37122A5F92700CBE40B /* Frameworks */,
 			);
@@ -463,8 +447,6 @@
 			isa = PBXGroup;
 			children = (
 				46BC7F2A224A80E000288AC9 /* Millenials.app */,
-				46AA8DA02418684A00838CCB /* Millenials watchOS.app */,
-				46AA8DAC2418684C00838CCB /* Millenials watchOS Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -478,7 +460,7 @@
 				46301958238C5971009971D6 /* Localization */,
 				4615D3362295933D00548EE2 /* Segues */,
 				468C27D2225684E900898202 /* Extensions */,
-				468C27CF225684D000898202 /* View Controllers */,
+				468C27CF225684D000898202 /* Scenes */,
 				46414679224D585D00E0B0B0 /* Objects */,
 				466B5B5F2263ADCE009D21C8 /* Custom Views */,
 				4619934F22A46A7700B73136 /* Assets */,
@@ -490,7 +472,7 @@
 			isa = PBXGroup;
 			children = (
 				463BBD3C239FE0B0005F5934 /* QuestionData.swift */,
-				463BBD3D239FE0B0005F5934 /* Questions.swift */,
+				463BBD3D239FE0B0005F5934 /* Question.swift */,
 				46BEAEA72886DEFF00305798 /* AnsweredQuestion.swift */,
 			);
 			path = Question;
@@ -502,6 +484,16 @@
 				46C1A37222A5F92700CBE40B /* Python3.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		46D7381A288849D30035BF08 /* PlayerStatsView */ = {
+			isa = PBXGroup;
+			children = (
+				463BBD50239FE136005F5934 /* PlayerStatsView.swift */,
+				46D7381B288849EF0035BF08 /* PlayerStatsViewStyle.swift */,
+				46D7381D28885AF40035BF08 /* PlayerStatsAccessoryView.swift */,
+			);
+			path = PlayerStatsView;
 			sourceTree = "<group>";
 		};
 		46DAA35823C8896C005319D9 /* Animators */ = {
@@ -524,48 +516,56 @@
 		46E70BCA237AE263000E6900 /* Debug */ = {
 			isa = PBXGroup;
 			children = (
-				46E70BCB237AE276000E6900 /* MDebugMaster.swift */,
 			);
 			path = Debug;
+			sourceTree = "<group>";
+		};
+		46FC5C672889FCBA00275539 /* PlayersSetup */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PlayersSetup;
+			sourceTree = "<group>";
+		};
+		46FC5C682889FCCD00275539 /* PlayerChange */ = {
+			isa = PBXGroup;
+			children = (
+				463BBD5E239FE1D7005F5934 /* PlayerChangeVC.swift */,
+			);
+			path = PlayerChange;
+			sourceTree = "<group>";
+		};
+		46FC5C692889FCE000275539 /* Question */ = {
+			isa = PBXGroup;
+			children = (
+				463BBD5F239FE1D7005F5934 /* QuestionVC.swift */,
+			);
+			path = Question;
+			sourceTree = "<group>";
+		};
+		46FC5C6A2889FD1600275539 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				46FC5C6D2889FD7200275539 /* GameSceneCoordinator.swift */,
+				46FC5C682889FCCD00275539 /* PlayerChange */,
+				46FC5C692889FCE000275539 /* Question */,
+				46FC5C6C2889FD3700275539 /* PlayerReport */,
+				467E7193288A1FEC00DAFD2E /* Conclusion */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		46FC5C6C2889FD3700275539 /* PlayerReport */ = {
+			isa = PBXGroup;
+			children = (
+				463BBD5B239FE1D7005F5934 /* PlayerRoundReportVC.swift */,
+			);
+			path = PlayerReport;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		46AA8D9F2418684A00838CCB /* Millenials watchOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 46AA8DBF2418684D00838CCB /* Build configuration list for PBXNativeTarget "Millenials watchOS" */;
-			buildPhases = (
-				46AA8D9E2418684A00838CCB /* Resources */,
-				46AA8DBE2418684D00838CCB /* Embed App Extensions */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				46AA8DAF2418684C00838CCB /* PBXTargetDependency */,
-			);
-			name = "Millenials watchOS";
-			productName = "Millenials watchOS";
-			productReference = 46AA8DA02418684A00838CCB /* Millenials watchOS.app */;
-			productType = "com.apple.product-type.application.watchapp2";
-		};
-		46AA8DAB2418684C00838CCB /* Millenials watchOS Extension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 46AA8DBB2418684D00838CCB /* Build configuration list for PBXNativeTarget "Millenials watchOS Extension" */;
-			buildPhases = (
-				46AA8DA82418684C00838CCB /* Sources */,
-				46AA8DA92418684C00838CCB /* Frameworks */,
-				46AA8DAA2418684C00838CCB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Millenials watchOS Extension";
-			productName = "Millenials watchOS Extension";
-			productReference = 46AA8DAC2418684C00838CCB /* Millenials watchOS Extension.appex */;
-			productType = "com.apple.product-type.watchkit2-extension";
-		};
 		46BC7F29224A80E000288AC9 /* Millenials */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 46BC7F3F224A80E100288AC9 /* Build configuration list for PBXNativeTarget "Millenials" */;
@@ -578,7 +578,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				46AA8DB92418684D00838CCB /* PBXTargetDependency */,
 			);
 			name = Millenials;
 			productName = Millenials;
@@ -595,12 +594,6 @@
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Ronaldo Santana";
 				TargetAttributes = {
-					46AA8D9F2418684A00838CCB = {
-						CreatedOnToolsVersion = 11.3.1;
-					};
-					46AA8DAB2418684C00838CCB = {
-						CreatedOnToolsVersion = 11.3.1;
-					};
 					46BC7F29224A80E000288AC9 = {
 						CreatedOnToolsVersion = 10.2;
 					};
@@ -626,32 +619,11 @@
 			projectRoot = "";
 			targets = (
 				46BC7F29224A80E000288AC9 /* Millenials */,
-				46AA8D9F2418684A00838CCB /* Millenials watchOS */,
-				46AA8DAB2418684C00838CCB /* Millenials watchOS Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		46AA8D9E2418684A00838CCB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				46AA8DA62418684C00838CCB /* Assets.xcassets in Resources */,
-				468C201224349AAA00C11805 /* Assets.xcassets in Resources */,
-				46AA8DA42418684A00838CCB /* Interface.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		46AA8DAA2418684C00838CCB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				468C201324349AAC00C11805 /* Assets.xcassets in Resources */,
-				46AA8DB62418684D00838CCB /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		46BC7F28224A80E000288AC9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -668,6 +640,7 @@
 				468619DC229709930077CE70 /* Light.ttf in Resources */,
 				463BBD11239FDDF9005F5934 /* LaunchScreen.storyboard in Resources */,
 				468619DD229709930077CE70 /* ExtraLight.ttf in Resources */,
+				46A5F9F4288708070024D082 /* DefaultConfig.json in Resources */,
 				468619DE229709930077CE70 /* Thin.ttf in Resources */,
 				4619934A22A462F600B73136 /* correct.mp3 in Resources */,
 				4630195B238C5999009971D6 /* Localizable.strings in Resources */,
@@ -680,16 +653,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		46AA8DA82418684C00838CCB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				46AA8DB42418684C00838CCB /* ExtensionDelegate.swift in Sources */,
-				468C200F24348F8E00C11805 /* ConnectionHandler.swift in Sources */,
-				46AA8DB22418684C00838CCB /* InterfaceController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		46BC7F26224A80E000288AC9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -705,14 +668,17 @@
 				460DEDC622A03B9C0011E248 /* Alert.swift in Sources */,
 				463BBD31239FE052005F5934 /* UIImage.swift in Sources */,
 				463BBD38239FE052005F5934 /* Array.swift in Sources */,
-				46E70BCC237AE276000E6900 /* MDebugMaster.swift in Sources */,
+				46B09A34288880DD00B1D45E /* IntroView.swift in Sources */,
 				460DEDC822A03BBC0011E248 /* ActionSheet.swift in Sources */,
 				463BBD6A239FE276005F5934 /* NSLocalizedString.swift in Sources */,
 				4619935222A46D4100B73136 /* NotificationProtocol.swift in Sources */,
+				46B09A3E288896E200B1D45E /* IntroViewTokens.swift in Sources */,
 				463BBD58239FE19E005F5934 /* MillenialsResults.swift in Sources */,
 				463BBD64239FE1D7005F5934 /* IntroVC.swift in Sources */,
 				463BBD34239FE052005F5934 /* UIViewController.swift in Sources */,
 				463BBD45239FE0BF005F5934 /* DeviceType.swift in Sources */,
+				46B09A3C288883B800B1D45E /* IntroPresenter.swift in Sources */,
+				46FC5C6628899F4900275539 /* Watcher.swift in Sources */,
 				463BBD67239FE1D7005F5934 /* QuestionVC.swift in Sources */,
 				460B36582287BA6400FD7965 /* MillenialsDelegate.swift in Sources */,
 				463BBD20239FE009005F5934 /* FlatTextField.swift in Sources */,
@@ -724,19 +690,25 @@
 				46965997239C4C7D003F38FD /* OrientationManager.swift in Sources */,
 				463BBD68239FE1D7005F5934 /* ConclusionVC.swift in Sources */,
 				46C25B11239C377400CEB580 /* AboutMeVC.swift in Sources */,
+				46FC5C6E2889FD7200275539 /* GameSceneCoordinator.swift in Sources */,
 				463BBD33239FE052005F5934 /* UIFont.swift in Sources */,
+				46B09A36288881B800B1D45E /* IntroFactory.swift in Sources */,
 				46E3FF59229986160044A7EB /* LastQuestionSegue.swift in Sources */,
 				463BBD1E239FE009005F5934 /* QuestionReportCell.swift in Sources */,
 				463BBD63239FE1D7005F5934 /* PlayerRoundReportVC.swift in Sources */,
-				463BBD41239FE0B0005F5934 /* Questions.swift in Sources */,
+				463BBD41239FE0B0005F5934 /* Question.swift in Sources */,
 				46DE37D122A57D6900914493 /* TieView.swift in Sources */,
 				463BBD56239FE151005F5934 /* UIStoryboardSegue.swift in Sources */,
+				46D7381C288849EF0035BF08 /* PlayerStatsViewStyle.swift in Sources */,
 				463BBD1F239FE009005F5934 /* PlayerSetupView.swift in Sources */,
 				463BBD30239FE052005F5934 /* UINavigationBar.swift in Sources */,
+				46B09A382888821100B1D45E /* IntroInteractor.swift in Sources */,
 				463BBD39239FE052005F5934 /* UIImageView.swift in Sources */,
 				463BBD4B239FE0D0005F5934 /* Name.swift in Sources */,
+				46A5F9EE288700100024D082 /* GameConfigs.swift in Sources */,
 				4615D3382295936200548EE2 /* OpenSegue.swift in Sources */,
 				463BBD40239FE0B0005F5934 /* QuestionData.swift in Sources */,
+				46D7381E28885AF40035BF08 /* PlayerStatsAccessoryView.swift in Sources */,
 				46FD19212378AE7C00AE848B /* QuestionSegue.swift in Sources */,
 				463BBD2F239FE052005F5934 /* UIButton.swift in Sources */,
 				468822CA22A3FCFE00E971CB /* WinnerView.swift in Sources */,
@@ -749,26 +721,14 @@
 				46DAA35A23C8897D005319D9 /* OpenAnimator.swift in Sources */,
 				463BBD3A239FE052005F5934 /* UIColor.swift in Sources */,
 				463BBD36239FE052005F5934 /* Int.swift in Sources */,
+				46A5F9F22887019A0024D082 /* AppConfigs.swift in Sources */,
 				463BBD37239FE052005F5934 /* Notification.swift in Sources */,
 				463BBD4A239FE0D0005F5934 /* HapticFeedback.swift in Sources */,
+				46B09A3A2888828D00B1D45E /* IntroViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		46AA8DAF2418684C00838CCB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 46AA8DAB2418684C00838CCB /* Millenials watchOS Extension */;
-			targetProxy = 46AA8DAE2418684C00838CCB /* PBXContainerItemProxy */;
-		};
-		46AA8DB92418684D00838CCB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			platformFilter = ios;
-			target = 46AA8D9F2418684A00838CCB /* Millenials watchOS */;
-			targetProxy = 46AA8DB82418684D00838CCB /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4630195D238C5999009971D6 /* Localizable.strings */ = {
@@ -799,115 +759,9 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		46AA8DA22418684A00838CCB /* Interface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				46AA8DA32418684A00838CCB /* Base */,
-			);
-			name = Interface.storyboard;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		46AA8DBC2418684D00838CCB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = 84JU2R55S9;
-				INFOPLIST_FILE = "Millenials watchOS Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ronaldss.Millenialss.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = Debug;
-		};
-		46AA8DBD2418684D00838CCB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = 84JU2R55S9;
-				INFOPLIST_FILE = "Millenials watchOS Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ronaldss.Millenialss.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = Release;
-		};
-		46AA8DC02418684D00838CCB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = 84JU2R55S9;
-				IBSC_MODULE = Millenials_watchOS_Extension;
-				INFOPLIST_FILE = "Millenials watchOS/Info.plist";
-				MARKETING_VERSION = 1.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ronaldss.Millenialss.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = Debug;
-		};
-		46AA8DC12418684D00838CCB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = 84JU2R55S9;
-				IBSC_MODULE = Millenials_watchOS_Extension;
-				INFOPLIST_FILE = "Millenials watchOS/Info.plist";
-				MARKETING_VERSION = 1.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ronaldss.Millenialss.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = Release;
-		};
 		46BC7F3D224A80E100288AC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1036,7 +890,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = S2B2XZHU49;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1046,7 +900,7 @@
 				);
 				MARKETING_VERSION = 1.1.0;
 				OTHER_SWIFT_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ronaldss.Millenialss;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ronaldss.Millenialsss;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = YES;
@@ -1065,7 +919,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = S2B2XZHU49;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1074,7 +928,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ronaldss.Millenialss;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ronaldss.Millenialsss;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = YES;
@@ -1086,24 +940,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		46AA8DBB2418684D00838CCB /* Build configuration list for PBXNativeTarget "Millenials watchOS Extension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				46AA8DBC2418684D00838CCB /* Debug */,
-				46AA8DBD2418684D00838CCB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		46AA8DBF2418684D00838CCB /* Build configuration list for PBXNativeTarget "Millenials watchOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				46AA8DC02418684D00838CCB /* Debug */,
-				46AA8DC12418684D00838CCB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		46BC7F25224A80DF00288AC9 /* Build configuration list for PBXProject "Millenials" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -14,7 +14,7 @@ final class QuestionHolder: Decodable {
         case questions
     }
     
-    var questions: [Question] = [] {
+    var questions: Set<Question> = [] {
         didSet {
             sortQuestions()
         }
@@ -44,7 +44,35 @@ final class QuestionHolder: Decodable {
         }
     }
     
+    func question(withID id: Int) -> Question? {
+        return questions.first() { $0.id == id }
+    }
+    
+    func reset() {
+        hardQuestions.removeAll()
+        mediumQuestions.removeAll()
+        easyQuestions.removeAll()
+        questions.removeAll()
+        shouldSortQuestions = false
+        didSortQuestions = false
+    }
+    
+    private func performWhatAPResenterShould() {
+        let config = GameConfigs.shared.questionsConfig
+        var numberOfAnswers = config.numberOfOptionsPerQuestion
+        if (config.includesCorrectOption) {
+            numberOfAnswers--
+        }
+        for question in questions {
+            if question.answers.count > numberOfAnswers {
+                let newAnswers = Array(question.answers[1...numberOfAnswers])
+                question.answers = newAnswers
+            }
+        }
+    }
+    
     private func sortQuestions() {
+        performWhatAPResenterShould()
         guard !questions.isEmpty else { return }
         questions.forEach { question in
             switch question.level {
@@ -58,7 +86,7 @@ final class QuestionHolder: Decodable {
     
 }
 
-final class Questions: NSObject {
+final class Questions {
     
     static let shared = Questions()
     
@@ -67,24 +95,28 @@ final class Questions: NSObject {
     private var questionHolder: QuestionHolder!
     var roundQuestions: [Question] = []
     
-    @objc
-    func newQuestions(round: Int) {
-        resetQuestions()
+    @discardableResult
+    func newQuestions(round: Int) -> [Question] {
+        roundQuestions = []
         loadQuestionsIfNeeded()
-        
-        var allRoundQuestions: Set<Question> = Set(questionHolder.questions(forLevel: QuestionLevel(id: round)))
-        if (allRoundQuestions.count > 5) {
-            while (roundQuestions.count != 5) {
+        let numberOfQuestions = GameConfigs.questionsConfig.numberOfQuestionsPerRound
+        let questionLevel = QuestionLevel(id: round)
+        var allRoundQuestions = Set(questionHolder.questions(forLevel: questionLevel))
+        if (allRoundQuestions.count > numberOfQuestions) {
+            while (roundQuestions.count != numberOfQuestions) {
                 let rand = allRoundQuestions.randomElement()!
                 roundQuestions.append(allRoundQuestions.remove(rand)!)
             }
         } else {
             roundQuestions = allRoundQuestions.shuffled()
         }
+        return roundQuestions
     }
     
     func resetQuestions() {
+        questionHolder.reset()
         roundQuestions.removeAll()
+        didLoadQuestions = false
     }
     
     private func loadQuestionsIfNeeded() {
@@ -94,7 +126,8 @@ final class Questions: NSObject {
     }
     
      private func loadQuestions() {
-        if let path = Bundle.main.path(forResource: "DefaultQuestions", ofType: "json") {
+         let fileName = GameConfigs.questionsConfig.jsonFilename
+        if let path = Bundle.main.path(forResource: fileName, ofType: "json") {
             let pathURL = URL(fileURLWithPath: path)
             if let file = try? Data(contentsOf: pathURL),
                let result = try? JSONDecoder().decode(QuestionHolder.self, from: file) {
@@ -108,6 +141,21 @@ final class Questions: NSObject {
 
 }
 
+// metodos para achar questoes
+extension Questions {
+    
+    func question(withID id: Int) -> Question? {
+        return questionHolder.question(withID: id)
+    }
+    
+    func question(withAnswered quest: AnsweredQuestion) -> Question? {
+        if let id = quest.extraData["id"] as? Int {
+            return question(withID: id)
+        }
+        return nil
+    }
+    
+}
 
 // aqui é no pior dos casos. vou deixar um json como string aqui
 // para caso o load (ainda local) das questoes falhar a gente puxa
@@ -128,6 +176,7 @@ fileprivate final class QuestionHolderMock {
     static private let jsonString: String = """
 {
     "questions": [{
+            "id": 0,
             "level": 0,
             "statement": "Eu jamais ia estuprar você porque você não merece",
             "options": ["Donald Trump",
@@ -144,6 +193,7 @@ fileprivate final class QuestionHolderMock {
             "correctAnswer": "Jair Bolsonaro"
         },
         {
+            "id": 1,
             "level": 0,
             "statement": "Bandido bom, é bandido morto!",
             "options": ["Donald Trump",
@@ -161,6 +211,7 @@ fileprivate final class QuestionHolderMock {
             "correctAnswer": "Jair Bolsonaro"
         },
         {
+            "id": 2,
             "level": 0,
             "statement": "Seria incapaz de amar um filho homossexual. Prefiro que um filho meu morra num acidente do que apareça com um bigodudo por aí",
             "options": ["Ciro Gomes",
@@ -176,6 +227,7 @@ fileprivate final class QuestionHolderMock {
             "correctAnswer": "Jair Bolsonaro"
         },
         {
+            "id": 3,
             "level": 0,
             "statement": "O holocausto é a solução definitiva para os judeus",
             "options": ["Winston Churchill",
@@ -190,6 +242,7 @@ fileprivate final class QuestionHolderMock {
             "correctAnswer": "Adolf Hitler"
         },
         {
+            "id": 4,
             "level": 0,
             "statement": "Vou construir um grande muro(...). Marquem minhas palavras",
             "options": ["Josef Stalin",
@@ -208,6 +261,7 @@ fileprivate final class QuestionHolderMock {
             "correctAnswer": "Donald Trump"
         },
         {
+            "id": 5,
             "level": 0,
             "statement": "Não tem coisa mais fácil do que cuidar de pobre, no Brasil. Com R$ 10, o pobre se contenta",
             "options": ["Jair Bolsonaro",
@@ -226,6 +280,7 @@ fileprivate final class QuestionHolderMock {
             "correctAnswer": "Lula"
         },
         {
+            "id": 6,
             "level": 1,
             "statement": "Eu fui num quilombola(...). O afrodescendente mais leve lá pesava sete arrobas. Não fazem nada. Eu acho que nem pra procriadores servem mais",
             "options": ["Lula",
@@ -238,6 +293,7 @@ fileprivate final class QuestionHolderMock {
             "correctAnswer": "Jair Bolsonaro"
         },
         {
+            "id": 7,
             "level": 1,
             "statement": "As massas são femininas e idiotas",
             "options": ["Jair Bolsonaro",
@@ -256,6 +312,7 @@ fileprivate final class QuestionHolderMock {
             "correctAnswer": "Adolf Hitler"
         },
         {
+            "id": 8,
             "level": 1,
             "statement": "Eu gosto dos chineses. Eu vendi um apartamento por US$ 15 milhões para alguém da China. Como não gostar deles?",
             "options": ["Geraldo Alckmin",
@@ -269,6 +326,7 @@ fileprivate final class QuestionHolderMock {
             "correctAnswer": "Donald Trump"
         },
         {
+            "id": 9,
             "level": 1,
             "statement": "Quando você é uma estrela, te deixam fazer de tudo. Pegar na b*ta. Dá para fazer qualquer coisa",
             "options": ["Alexandre Frota",
@@ -286,6 +344,7 @@ fileprivate final class QuestionHolderMock {
             "correctAnswer": "Donald Trump"
         },
         {
+            "id": 10,
             "level": 1,
             "statement": "Eu poderia parar no meio da Quinta Avenida e atirar em alguém, e não perderia quaisquer eleitores, ok?",
             "options": ["Jair Bolsonaro",
@@ -303,6 +362,7 @@ fileprivate final class QuestionHolderMock {
             "correctAnswer": "Donald Trump"
         },
         {
+            "id": 11,
             "level": 1,
             "statement": "Feminismo? Eu acho que é coisa de quem não tem o que fazer",
             "options": ["Jair Bolsonaro",
@@ -320,6 +380,7 @@ fileprivate final class QuestionHolderMock {
             "correctAnswer": "Lula"
         },
         {
+            "id": 12,
             "level": 2,
             "statement": "Só não te estupro porque você não merece",
             "options": ["Donald Trump",
@@ -336,6 +397,7 @@ fileprivate final class QuestionHolderMock {
             "correctAnswer": "Jair Bolsonaro"
         },
         {
+            "id": 13,
             "level": 2,
             "statement": "Uma mulher não pode ser submissa ao homem por causa de um prato de comida. Tem que ser submissa porque gosta dele",
             "options": ["Jair Bolsonaro",
@@ -348,6 +410,7 @@ fileprivate final class QuestionHolderMock {
             "correctAnswer": "Lula"
         },
         {
+            "id": 14,
             "level": 2,
             "statement": "Quem chega em Windhoek não parece que está em um país africano. Poucas cidades do mundo são tão limpas, tão bonitas arquitetonicamente e tem um povo tão extraordinário como tem essa cidade",
             "options": ["Donald Trump",
@@ -366,6 +429,7 @@ fileprivate final class QuestionHolderMock {
             "correctAnswer": "Lula"
         },
         {
+            "id": 15,
             "level": 2,
             "statement": "O poder político nasce do cano da espingarda",
             "options": ["Che Guevara",
@@ -385,6 +449,7 @@ fileprivate final class QuestionHolderMock {
             "correctAnswer": "Mao Tsé-Tung"
         },
         {
+            "id": 16,
             "level": 2,
             "statement": "Ninguém mais é capaz de indicar os desajustes de preços no supermercado do que a mulher",
             "options": ["Donald Trump",
@@ -395,6 +460,7 @@ fileprivate final class QuestionHolderMock {
             "correctAnswer": "Michel Temer"
         },
         {
+            "id": 17,
             "level": 2,
             "statement": "Se você não tem fama de pegador e é solteiro, fica com fama de veado. Então, antes pegador que veado, né?",
             "options": ["Luan Santana",

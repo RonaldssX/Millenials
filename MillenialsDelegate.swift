@@ -12,12 +12,11 @@ import AVFoundation
 
 typealias key = NSAttributedString.Key
 
-fileprivate let debugging: Bool = true
-fileprivate let debuggingMods: [debugMods] = debugMods.allCases
-
 func showStatusBar() { UIApplication.shared.isStatusBarHidden = false }
 
 func hideStatusBar() { UIApplication.shared.isStatusBarHidden = true }
+
+var mainWindow: UIWindow?
 
 @UIApplicationMain
 class MillenialsDelegate: UIResponder, UIApplicationDelegate {
@@ -33,11 +32,29 @@ class MillenialsDelegate: UIResponder, UIApplicationDelegate {
         hideStatusBar()
         
         setupAudioCategory()
-        initSingletons()
+        startObjects()
         
         configurePlayShortcut()
-        
+        configureCustomWindow()
         return true
+    }
+    
+    private func configureCustomWindow() {
+        var initialViewController: UIViewController
+        if (GameConfigs.shared.tempShouldUseSegues) {
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let vc = storyboard.instantiateInitialViewController()
+            initialViewController = vc!
+            
+        } else {
+            let rootVC = IntroFactory.make()
+            let nav = UINavigationController(rootViewController: rootVC)
+            initialViewController = nav
+        }
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = initialViewController
+        window?.makeKeyAndVisible()
+        mainWindow = window
     }
     
     @nonobjc
@@ -58,15 +75,13 @@ class MillenialsDelegate: UIResponder, UIApplicationDelegate {
     
     
     @nonobjc
-    private func initSingletons() {
+    private func startObjects() {
         
+        GameConfigs.loadDefault()
         _ = Millenials.shared
         _ = Questions.shared
-        _ = MDebug.shared
         _ = WatchHandler.shared
-        
-        MDebug.shared.shouldDebug = debugging
-        MDebug.shared.mods = debuggingMods
+        _ = Watcher.shared
         
     }
     

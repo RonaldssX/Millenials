@@ -40,7 +40,7 @@ class TieView: UIView {
             guard (self.player1ImageView != nil) else { return }
             
             let picture = Millenials.shared.endGameResults?.players.first?.picture
-            let defaultPicture = PlayerPictures.shared.defaultGame
+            let defaultPicture = PlayerPictures.defaultGame
             
             self.player1ImageView.contentMode = .scaleAspectFill
             
@@ -98,7 +98,7 @@ class TieView: UIView {
             guard (self.player2ImageView != nil) else { return }
             
             let picture = Millenials.shared.endGameResults?.players.last?.picture
-            let defaultPicture = PlayerPictures.shared.defaultGame
+            let defaultPicture = PlayerPictures.defaultGame
             
             self.player2ImageView.contentMode = .scaleAspectFill
             
@@ -171,7 +171,7 @@ class TieView: UIView {
             self.player1Button.setTitleColor(.OffWhite, for: .normal)
             
             self.player1Button.titleLabel?.font = UIFont.defaultFont(size: 20, weight: .regular)
-            self.player1Button.setTitle("Ver \(Millenials.shared.endGameResults!.players.first!.name!)", for: .normal)
+            self.player1Button.setTitle("Ver \(Millenials.shared.endGameResults!.players.first!.name)", for: .normal)
             
             addSubview(self.player1Button)
             self.player1Button.translatesAutoresizingMaskIntoConstraints = false
@@ -199,7 +199,7 @@ class TieView: UIView {
             self.player2Button.setTitleColor(.OffWhite, for: .normal)
             
             self.player2Button.titleLabel?.font = UIFont.defaultFont(size: 20, weight: .regular)
-            self.player2Button.setTitle("Ver \(Millenials.shared.endGameResults!.players.last!.name!)", for: .normal)
+            self.player2Button.setTitle("Ver \(Millenials.shared.endGameResults!.players.last!.name)", for: .normal)
             
             addSubview(self.player2Button)
             self.player2Button.translatesAutoresizingMaskIntoConstraints = false

@@ -230,28 +230,31 @@ final class IntroVC: UIViewController {
     
     @nonobjc
     private func debugLabels() {
-        guard (MDebug.shared.shouldDebug) else { return }
-        let debugOnLabel = UILabel()
-        debugOnLabel.text = "Debug: \(MDebug.shared.shouldDebug)"
-        debugOnLabel.font = UIFont.defaultFont(size: 10, weight: .light)
-        debugOnLabel.textColor = .OffWhite
-        
-        bottomView.addSubview(debugOnLabel)
-        debugOnLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        debugOnLabel.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor).isActive = true
-        debugOnLabel.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: -25).isActive = true
-        
-        let debugLabel = UILabel()
-        debugLabel.text = "Millenials \(Bundle.main.infoDictionary!["CFBundleShortVersionString"]!) build \(Bundle.main.infoDictionary!["CFBundleVersion"]!)"
-        debugLabel.font = UIFont.defaultFont(size: 15, weight: .light)
-        debugLabel.textColor = .OffWhite
-        
-        bottomView.addSubview(debugLabel)
-        debugLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        debugLabel.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor).isActive = true
-        debugLabel.bottomAnchor.constraint(equalTo: debugOnLabel.topAnchor, constant: -10).isActive = true
+        if AppConfigs.DebugConfigs.shared.isDebuggingEnabled {
+            /*
+            let debugOnLabel = UILabel()
+            debugOnLabel.text = "Debug: \(MDebug.shared.shouldDebug)"
+            debugOnLabel.font = UIFont.defaultFont(size: 10, weight: .light)
+            debugOnLabel.textColor = .OffWhite
+            
+            bottomView.addSubview(debugOnLabel)
+            debugOnLabel.translatesAutoresizingMaskIntoConstraints = false
+            
+            debugOnLabel.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor).isActive = true
+            debugOnLabel.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: -25).isActive = true
+             */
+            
+            let debugLabel = UILabel()
+            debugLabel.text = "Millenials \(Bundle.main.infoDictionary!["CFBundleShortVersionString"]!) build \(Bundle.main.infoDictionary!["CFBundleVersion"]!)"
+            debugLabel.font = UIFont.defaultFont(size: 15, weight: .light)
+            debugLabel.textColor = .OffWhite
+            
+            bottomView.addSubview(debugLabel)
+            debugLabel.translatesAutoresizingMaskIntoConstraints = false
+            
+            debugLabel.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor).isActive = true
+            debugLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
+        }
         
     }
     
@@ -271,6 +274,7 @@ final class IntroVC: UIViewController {
         aboutUsButton = UIButton()
         
         soundButton = UIButton()
+        debugLabels()
         
     }
     
@@ -390,12 +394,19 @@ extension IntroVC {
                 self.millenialsLogoView?.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
                 
             }, completion: { _ in
-                
-                self.performSegue(withIdentifier: "IntroPlayersSegue", sender: nil)
+                self.navigate()
                 self.millenialsLogoView?.transform = .identity
                 
             })
         })
+    }
+    
+    private func navigate() {
+        if (GameConfigs.shared.tempShouldUseSegues) {
+            performSegue(withIdentifier: "IntroPlayersSegue", sender: nil)
+        } else {
+            navigationController?.pushViewController(PlayersVC(), animated: false)
+        }
     }
     
 }

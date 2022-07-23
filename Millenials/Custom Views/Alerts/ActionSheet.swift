@@ -15,7 +15,6 @@ public class ActionSheet: UIViewController, NotificationProtocol {
         didSet {
             
             guard (self.backgroundEffect != nil) else { return }
-            
             let blur = UIBlurEffect(style: .dark)
             self.backgroundEffect?.effect = blur
             
@@ -76,7 +75,6 @@ public class ActionSheet: UIViewController, NotificationProtocol {
     internal func configureView() {
         
         self.backgroundEffect = UIVisualEffectView()
-        
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissView))
         
         view.addGestureRecognizer(tap)
@@ -107,21 +105,18 @@ public class ActionSheet: UIViewController, NotificationProtocol {
     
     func display(on viewController: UIViewController) {
         
-        let snapshot = (viewController.view.superview?.superview?.superview?.snapshotView(afterScreenUpdates: true))!
-        
-        view.addSubview(snapshot)
         addConstraints()
-        view.insertSubview(backgroundEffect!, at: 1)
-        
+        view.insertSubview(backgroundEffect!, at: 0)
+        viewController.modalPresentationStyle = .overCurrentContext
         viewController.present(self, animated: false, completion: {
             
             self.actionSheetConstraint?.constant = -10
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 2, initialSpringVelocity: 1, options: [.preferredFramesPerSecond60, .curveEaseInOut, .allowUserInteraction], animations: {
                 
-                self.backgroundEffect?.alpha = 1.0
+                self.backgroundEffect?.alpha = 0.7
                 self.view.layoutIfNeeded()
                 
-                hideStatusBar()
+                //hideStatusBar()
                 
             })
         })

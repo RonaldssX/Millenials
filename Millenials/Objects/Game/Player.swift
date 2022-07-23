@@ -11,39 +11,55 @@ import UIKit
 protocol PlayerProtocol {
     var name: String { get }
     var picture: UIImage { get }
-    var color: UIColor? { get }
-    var points: Int { get }
+    var color: UIColor { get }
     
 }
 
-final class Player {
+protocol PlayerDelegateProtocol {
+    
+    func playerReceivedRoundQuestions(_ questions: [Question])
+    func playerStartedPlayingCurrentRound(_ round: Int)
+    func playerDidNotAnswer(question: AnsweredQuestion)
+    func playerDidAnswer(question: AnsweredQuestion)
+    func playerFinishedPlayingCurrentRound(_ round: Int)
+    
+}
+
+final class Player: PlayerProtocol {
     
         // autodescritivo
-    init(name: String?, picture: UIImage? = nil, color: UIColor? = nil) {
-        
-        self.points = 0
-        
-        self.questions = []
-        self.answeredQuestions = []
+    init(name: String, picture: UIImage, color: UIColor) {
         
         self.name = name
         self.picture = picture
         self.color = color
-        
-        self.answeredQuestions = []
+        self.roundsPlayed = []
+        self.hasPlayedRound = false
+        self.isCurrentPlayer = false
+        self.points = 0
+        self.answeredQuestionsStore = {
+            var ret: [[AnsweredQuestion]] = []
+            while (ret.count != GameConfigs.shared.millenialsConfig.numberOfRounds) {
+                ret.append([])
+            }
+            return ret
+        }()
+        self.questions = []
         
     }
         // nome do jogador
-    var name: String?
+    var name: String
     
         // foto do jogador (caso tenha)
-    var picture: UIImage?
+    var picture: UIImage
     
         // cor do jogador (caso use a foto padrão)
-    var color: UIColor?
+    var color: UIColor
     
-        // autodescritivo
-    var hasPlayedRound: Bool = false
+        // autodescritivos
+    var roundsPlayed: [Int]
+    var hasPlayedRound: Bool
+    var isCurrentPlayer: Bool
     
         // autodescritivo
     var points: Int
@@ -56,33 +72,30 @@ final class Player {
      // no mesmo round.
     */
     var multiplier: Int {
-        
         get {
-            
-            guard (questions.count <= 2), answeredQuestions.count > 3 else { return 1 }
-            let answeredQuestionsCount = answeredQuestions.count
-            let range: Range<Int> = Range((answeredQuestionsCount - 3)...(answeredQuestionsCount - 1))
-            guard (answeredQuestions.allSatisfy(in: range, {$0.answeredCorrectly})) else { return 1 }
-            return 2
-            
+            if (currentQuestionIndex >= 3) {
+                let currentRound = Millenials.shared.gameRound
+                var answers: [AnsweredQuestion] = answeredQuestionsStore[currentRound - 1] // todas do round
+                answers = Array(answers[...2]) // 3 mais recentes
+                if (answers.allSatisfy { $0.answeredCorrectly }) {
+                    return 2
+                }
+            }
+            return 1
         }
-        
     }
+    
+    var answeredQuestionsStore: [[AnsweredQuestion]]
     
     /*
      // Array contendo as questões que o jogador vai responder
      // vai responder no round. atribuído pelo Millenials.
-     // sempre que uma questão é respondida ela é tirada
-     // do Array. Quando count == 0, ele finaliza a jogada
-     // do jogador.
+     //
     */
     var questions: [Question] {
-        
         didSet {
-            guard (!questions.isEmpty) else { return }
             currentQuestionIndex = 0
         }
-        
     }
     
     private var currentQuestionIndex: Int = 0
@@ -96,47 +109,16 @@ final class Player {
     }
     
         // autodescritivo
-    var answeredQuestions: [AnsweredQuestion]
-    
-    /*
-     // função usada pra controlar o flow das
-     // questões. nome autodescritivo.
-    */
-    func refreshCurrentQuestion() {
-        
-    }
-    
-    func questionAnswered(answer: String? = nil, order: [String]) {
-        
-        guard (questions.count != 0) else { return }
-        let answeredQuestion = currentQuestion.answered(answer, multiplier: multiplier, additionalData: ["order": order])
-        if (answeredQuestion.answeredCorrectly) { addPoints() }
-        
-    }
-    
-    @objc
-    func answerAllQuestions() {
-        guard MDebug.shared.shouldDebug && MDebug.shared.mods.contains(.infiniteQuestions) else { return }
-        while let quest = questions.first {
-            self.questionAnswered(answer: quest.correctAnswer, order: quest.answers)
-            print("answered!!")
+    var answeredQuestions: [AnsweredQuestion] {
+        get {
+            return answeredQuestionsStore.flatMap() { $0 }
         }
-    }
-    
-        // autodescritivo
-    deinit {
-        
-        name = nil
-        picture = nil
-        color = nil
-        
-        NotificationCenter.default.removeObserver(self)
-        
     }
     
 }
 
-extension Player: Equatable {
+// MARK: - Equatable and Hashable conforms
+extension Player: Equatable, Hashable {
     
     static func == (lhs: Player, rhs: Player) -> Bool {
         return lhs.name == rhs.name && lhs.color == rhs.color
@@ -146,15 +128,59 @@ extension Player: Equatable {
         return !(lhs == rhs)
     }
     
+    func hash(into hasher: inout Hasher) {
+        for property in [name as AnyHashable, color as AnyHashable
+        ] { hasher.combine(property) }
+    }
+    
 }
 
-extension Player {
+// MARK: - PlayerDelegateProtocol conforms
+extension Player: PlayerDelegateProtocol {
     
-    // autodescritivo
-    private func addPoints() {
-        if MDebug.shared.shouldDebug && MDebug.shared.mods.contains(.noPoints) { return }
-        guard let lastAnsweredQuestion = answeredQuestions.last else { return }
-        points += lastAnsweredQuestion.pointsEarned
+    func playerReceivedRoundQuestions(_ questions: [Question]) {
+        self.questions = questions
+    }
+    
+    func playerStartedPlayingCurrentRound(_ round: Int) {
+        isCurrentPlayer = true
+        currentQuestionIndex = 0
+    }
+    
+    func playerDidNotAnswer(question: AnsweredQuestion) {
+        addQuestionToStore(question)
+        currentQuestionIndex++
+    }
+    
+    func playerDidAnswer(question: AnsweredQuestion) {
+        addQuestionToStore(question)
+        currentQuestionIndex++
+        addPoints(points: question.pointsEarned)
+    }
+    
+    func playerFinishedPlayingCurrentRound(_ round: Int) {
+        isCurrentPlayer = false
+        hasPlayedRound = true
+        roundsPlayed.append(round)
+    }
+    
+    @discardableResult
+    private func addPoints(points: Int) -> Int {
+        self.points += points
+        return self.points
+    }
+    
+    private func addQuestionToStore(_ quest: AnsweredQuestion) {
+        if let question = quest.question {
+            // ja sabemos aonde colocar ela
+            answeredQuestionsStore[question.level.rawValue].append(quest)
+        } else {
+            // vamos descobrir qual eh a question via id guardado
+            let id: Int = quest.extraData["id"] as! Int
+            if let question = Questions.shared.question(withID: id) {
+                answeredQuestionsStore[question.level.rawValue].append(quest)
+            }
+        }
     }
     
 }

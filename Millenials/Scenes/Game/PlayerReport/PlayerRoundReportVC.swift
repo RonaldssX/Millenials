@@ -10,6 +10,8 @@ import UIKit    // StatsChangeSegue
 
 final class PlayerRoundReportVC: UIViewController {
     
+    weak var player: Player?
+    
     private var imageViewConstraint: NSLayoutConstraint? // 50 \ 30
     private var playerImageView: UIImageView! {
         
@@ -20,9 +22,9 @@ final class PlayerRoundReportVC: UIViewController {
             guard (self.playerImageView != nil) else { return }
             
             self.playerImageView.alpha = 0.0
-            self.playerImageView.backgroundColor = _currentPlayer?.color
+            self.playerImageView.backgroundColor = player?.color
             self.playerImageView.contentMode = .scaleAspectFill
-            self.playerImageView.image = _currentPlayer?.picture
+            self.playerImageView.image = player?.picture
             self.playerImageView.isUserInteractionEnabled = false
             self.playerImageView.layer.borderWidth = 7
             self.playerImageView.layer.borderColor = UIColor.OffWhite.cgColor
@@ -50,11 +52,10 @@ final class PlayerRoundReportVC: UIViewController {
             self.playerImageView.widthAnchor.constraint(equalTo: self.playerImageView.heightAnchor).isActive = true
             
             self.playerImageView.rounded()
-            
-            if (self.playerImageView.image == PlayerPictures.shared.defaultAdd || self.playerImageView.image == PlayerPictures.shared.defaultGame) {
+            if (PlayerPictures.isDefaultPicture(playerImageView.image)) {
                 self.playerImageView.image = self.playerImageView.image?.withRenderingMode(.alwaysTemplate)
             }
-            
+            /*
             if let c = playerStatsView.pointStackView.constraints.first(where: { $0.identifier == "leading" }) {
                 playerStatsView.pointStackView.removeConstraint(c)
                 playerStatsView.pointStackView.trailingAnchor.constraint(lessThanOrEqualTo: self.playerImageView.leadingAnchor, constant: -5).isActive = true
@@ -64,7 +65,7 @@ final class PlayerRoundReportVC: UIViewController {
                 playerStatsView.roundStackView.removeConstraint(c)
                 playerStatsView.roundStackView.leadingAnchor.constraint(greaterThanOrEqualTo: self.playerImageView.trailingAnchor, constant: 5).isActive = true 
             }
-            
+            */
         }
         
     }
@@ -79,9 +80,14 @@ final class PlayerRoundReportVC: UIViewController {
             
             self.playerStatsView.alpha = 0.0
             
-            self.playerStatsView.style = .Light // colors
-            self.playerStatsView.size = .Small
-            self.playerStatsView.configure(with: self) // width constraints
+            let style = PlayerStatusViewStyles(colors: .light, sizes: .small)
+            self.playerStatsView.configure(with: player!, viewStyle: style)
+            self.playerStatsView.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(self.playerStatsView)
+            NSLayoutConstraint.activate([
+                self.playerStatsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                self.playerStatsView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            ])
             
             self.playerStatsView.layer.cornerRadius = 10
             
@@ -203,7 +209,22 @@ final class PlayerRoundReportVC: UIViewController {
     private func continueToNextPlayer() {
         Millenials.shared.playerFinished()
         guard !(Millenials.shared.gameHasEnded) else { return animateExit() }
-        performSegue(withIdentifier: "StatsChangeSegue", sender: nil)
+        if (GameConfigs.shared.tempShouldUseSegues) {
+            performSegue(withIdentifier: "StatsChangeSegue", sender: nil)
+        } else {
+            NotificationCenter.default.post(name: "next")
+            /*
+            if let playerChangeVC = navigationController?.children.first(where: { $0 is PlayerChangeVC }) as? PlayerChangeVC {
+                playerChangeVC.configure(with: Millenials.shared.currentPlayer!)
+                navigationController?.popToViewController(playerChangeVC, animated: false)
+            } else {
+                let playerChangeVC = PlayerChangeVC()
+                playerChangeVC.configure(with: Millenials.shared.currentPlayer!)
+                navigationController?.pushViewController(playerChangeVC, animated: false)
+            }
+             */
+        }
+
     }
 
 }
@@ -250,10 +271,18 @@ extension PlayerRoundReportVC {
             self.continueButton?.alpha = 0.0
             
         }, completion: {_ in
-            
-            self.performSegue(withIdentifier: "ReportConclusionSegue", sender: nil)
-            
+            self.performExitNavigation()
         })
+    }
+    
+    func performExitNavigation() {
+        if (GameConfigs.shared.tempShouldUseSegues) {
+            performSegue(withIdentifier: "ReportConclusionSegue", sender: nil)
+        } else {
+            NotificationCenter.default.post(name: "next")
+            //let conclusionVC = ConclusionVC()
+            //navigationController?.pushViewController(conclusionVC, animated: false)
+        }
     }
     
 }
@@ -262,23 +291,25 @@ extension PlayerRoundReportVC: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int { return 1 }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return _currentPlayer!.answeredQuestions.count }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return _currentPlayer!.answeredQuestionsStore[Millenials.shared.gameRound - 1].count }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let questionCell = tableView.dequeueReusableCell(withIdentifier: "QuestionCell") as! QuestionReportCell
-        let question = _currentPlayer!.questions[indexPath.row]
+        
+        let question = player!.questions[indexPath.row]
+        let answer = player!.answeredQuestionsStore[Millenials.shared.gameRound - 1][indexPath.row]
         //let question = _currentPlayer!.answeredQuestions[indexPath.row + ((Millenials.shared.gameRound - 1) * Questions)]
-        questionCell.configureWithQuestion(question)
+        questionCell.configureWithQuestion(question, answer: answer)
         return questionCell
         
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! QuestionReportCell
-        if let quest = cell.question() {
+        if let quest = cell.question(), let answered = cell.answeredQuestionObject {
             let preview = AnsweredQuestionPreviewVC()
-            preview.previewQuestion(quest)
+            preview.previewQuestion(answered, question: quest)
             if #available(iOS 13.0, *) {
                 present(preview, animated: true, completion: nil)
             } else {

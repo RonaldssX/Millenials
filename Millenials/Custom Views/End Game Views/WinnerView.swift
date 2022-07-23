@@ -22,7 +22,7 @@ class WinnerView: UIView {
             self.winnerImageView.clipsToBounds = true
             
             let picture = displayedPlayer?.picture
-            let defaultPicture = PlayerPictures.shared.defaultGame
+            let defaultPicture = PlayerPictures.defaultGame
             
             self.winnerImageView.contentMode = .scaleAspectFill
             self.winnerImageView.image = ((picture == defaultPicture) ? picture?.withRenderingMode(.alwaysTemplate) : picture)
@@ -50,12 +50,12 @@ class WinnerView: UIView {
             
             guard (self.winnerStatsView != nil) else { return }
             
-            self.winnerStatsView.style = .Dark
-            self.winnerStatsView.size = .Small
+            let viewStyle = PlayerStatusViewStyles(colors: .dark, sizes: .small)
+            self.winnerStatsView.configure(with: displayedPlayer!, viewStyle: viewStyle)
             
             self.winnerStatsView.alpha = 0.0
             
-            self.winnerStatsView.customConfig(with: self, displayedPlayer, rightHeader: displayedPlayer!.name!, rightSubtitle: localized("Name"))
+            //self.winnerStatsView.customConfig(with: self, displayedPlayer, rightHeader: displayedPlayer!.name, rightSubtitle: localized("Name"))
             self.winnerStatsView.layer.cornerRadius = 10
             
         }
@@ -107,7 +107,7 @@ class WinnerView: UIView {
         self.winnerImageView = UIImageView()
         
         self.winnerStatsView.centerYAnchor.constraint(equalTo: winnerImageView.centerYAnchor).isActive = true
-        self.winnerStatsView.roundNumberLabel.leadingAnchor.constraint(equalTo: winnerImageView.trailingAnchor, constant: 10).isActive = true
+        //self.winnerStatsView.roundNumberLabel.leadingAnchor.constraint(equalTo: winnerImageView.trailingAnchor, constant: 10).isActive = true
         
         self.playerQuestionsTableView = UITableView()
         
@@ -121,7 +121,7 @@ class WinnerView: UIView {
         self.winnerImageView = UIImageView()
         
         self.winnerStatsView.centerYAnchor.constraint(equalTo: winnerImageView.centerYAnchor).isActive = true
-        self.winnerStatsView.roundNumberLabel.leadingAnchor.constraint(equalTo: winnerImageView.trailingAnchor, constant: 10).isActive = true
+        //self.winnerStatsView.roundNumberLabel.leadingAnchor.constraint(equalTo: winnerImageView.trailingAnchor, constant: 10).isActive = true
         
         self.playerQuestionsTableView = UITableView()
         
@@ -201,7 +201,7 @@ extension WinnerView {
         self.winnerImageView = UIImageView()
         
         self.winnerStatsView.centerYAnchor.constraint(equalTo: winnerImageView.centerYAnchor).isActive = true
-        self.winnerStatsView.roundNumberLabel.leadingAnchor.constraint(equalTo: winnerImageView.trailingAnchor, constant: 10).isActive = true 
+        //self.winnerStatsView.roundNumberLabel.leadingAnchor.constraint(equalTo: winnerImageView.trailingAnchor, constant: 10).isActive = true 
         
         winnerImageView.rounded()
         winnerImageView.layer.borderWidth = 5.0
@@ -224,7 +224,8 @@ extension WinnerView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let questionCell = tableView.dequeueReusableCell(withIdentifier: "QuestionCell") as! QuestionReportCell
-        questionCell.configureWithQuestion(displayedPlayer!.questions[indexPath.row])
+        let index = (indexPath.section * GameConfigs.questionsConfig.numberOfQuestionsPerRound) + indexPath.row
+        questionCell.configureWithQuestion(displayedPlayer!.questions[index], answer: displayedPlayer!.answeredQuestions[index])
         
 //        if (indexPath.section == 0) {
 //
@@ -246,9 +247,9 @@ extension WinnerView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! QuestionReportCell
-        if let quest = cell.question() {
+        if let quest = cell.question(), let answered = cell.answeredQuestionObject {
             let preview = AnsweredQuestionPreviewVC()
-            preview.previewQuestion(quest)
+            preview.previewQuestion(answered, question: quest)
             if #available(iOS 13.0, *) {
                 rootVC.present(preview, animated: true, completion: nil)
             } else {

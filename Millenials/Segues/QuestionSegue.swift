@@ -14,6 +14,7 @@ class QuestionSegue: UIStoryboardSegue {
         let containerView = initialViewController.view.superview
         let navigationController = initialViewController.navigationController as! NavigationVC
         let questionVC = finalViewController as? QuestionVC
+        //questionVC?.player = Millenials.shared.currentPlayer
         
         if let questionVC = questionVC  {
             questionVC.loadViewIfNeeded()
