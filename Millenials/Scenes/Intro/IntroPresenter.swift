@@ -20,10 +20,11 @@ protocol IntroPresenterProtocol {
 struct IntroPresenter: IntroPresenterProtocol {
     
     weak var viewController: IntroViewController?
+    weak var coordinator: MillenialsMainCoordinator?
     
     func setupPlayers() {
         viewController?.contentView.animator?.performExitAnimation({
-            self.viewController?.goToPlayers()
+            self.coordinator?.goToPlayers()
         })
     }
     

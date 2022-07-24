@@ -12,6 +12,7 @@ var gameScene: GameSceneCoordinator!
 
 final class PlayersVC: UIViewController {
     
+    weak var coordinator: MillenialsMainCoordinator?
      var activeTextField: FlatTextField?
     
      var textFields: [FlatTextField] = []
@@ -289,8 +290,7 @@ extension PlayersVC {
         if (GameConfigs.shared.tempShouldUseSegues) {
             performSegue(withIdentifier: "PlayersChangeSegue", sender: nil)
         } else {
-            gameScene = GameSceneCoordinator(game: Millenials.shared)
-            gameScene.start(self)
+            coordinator?.goToGame()
             /*
             let playerChangeVC = PlayerChangeVC()
             playerChangeVC.configure(with: Millenials.shared.currentPlayer!)

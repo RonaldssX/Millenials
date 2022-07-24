@@ -21,6 +21,7 @@ var mainWindow: UIWindow?
 @UIApplicationMain
 class MillenialsDelegate: UIResponder, UIApplicationDelegate {
     
+    var coordinator: Coordinator?
     var window: UIWindow?
     var orientation: UIInterfaceOrientationMask = .portrait
     
@@ -47,13 +48,13 @@ class MillenialsDelegate: UIResponder, UIApplicationDelegate {
             initialViewController = vc!
             
         } else {
-            let rootVC = IntroFactory.make()
-            let nav = UINavigationController(rootViewController: rootVC)
-            initialViewController = nav
+            coordinator = MillenialsMainCoordinator()
+            initialViewController = coordinator!.navigationController
         }
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = initialViewController
         window?.makeKeyAndVisible()
+        coordinator?.start()
         mainWindow = window
     }
     

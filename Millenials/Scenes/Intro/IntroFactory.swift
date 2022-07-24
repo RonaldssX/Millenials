@@ -10,9 +10,9 @@ import UIKit
 
 final class IntroFactory {
     
-    static func make() -> IntroViewController {
+    static func make(coordinator: MillenialsMainCoordinator) -> IntroViewController {
         let controller = IntroViewController()
-        let presenter = IntroPresenter(viewController: controller)
+        let presenter = IntroPresenter(viewController: controller, coordinator: coordinator)
         let interactor = IntroInteractor(presenter: presenter)
         controller.configure(interactor: interactor)
         return controller

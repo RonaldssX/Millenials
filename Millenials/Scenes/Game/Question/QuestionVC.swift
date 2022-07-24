@@ -9,7 +9,7 @@
 import UIKit // QuestionStatsSegue
 
 protocol QuestionVCProtocol {
-    func configure(with questions: [Question], delegate: MillenialsInteractionsProtocol)
+    func configure(with questions: [Question], delegate: MillenialsInteractionsProtocol, coordinator: GameSceneCoordinator)
 }
 
 final class QuestionVC: UIViewController, QuestionVCProtocol {
@@ -24,6 +24,7 @@ final class QuestionVC: UIViewController, QuestionVCProtocol {
     }
     
     private weak var delegate: MillenialsInteractionsProtocol?
+    private weak var coordinator: GameSceneCoordinator?
     
     var displayIndex: Int = 0
     
@@ -104,9 +105,10 @@ final class QuestionVC: UIViewController, QuestionVCProtocol {
     
     var buttons: [UIButton] = []
     
-    func configure(with questions: [Question], delegate: MillenialsInteractionsProtocol) {
+    func configure(with questions: [Question], delegate: MillenialsInteractionsProtocol, coordinator: GameSceneCoordinator) {
         self.questions = questions
         self.delegate = delegate
+        self.coordinator = coordinator
     }
 
     override func viewDidLoad() {
@@ -463,12 +465,7 @@ extension QuestionVC {
         if (GameConfigs.shared.tempShouldUseSegues) {
             performSegue(withIdentifier: "QuestionStatsSegue", sender: nil)
         } else {
-            NotificationCenter.default.post(name: "next")
-            /*
-            let reportVC = PlayerRoundReportVC()
-            reportVC.player = player
-            navigationController?.pushViewController(reportVC, animated: false)
-             */
+            coordinator?.goToReport()
         }
     }
     

@@ -44,7 +44,6 @@
 		463BBD46239FE0BF005F5934 /* DisplayTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD44239FE0BF005F5934 /* DisplayTheme.swift */; };
 		463BBD4A239FE0D0005F5934 /* HapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD47239FE0D0005F5934 /* HapticFeedback.swift */; };
 		463BBD4B239FE0D0005F5934 /* Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD48239FE0D0005F5934 /* Name.swift */; };
-		463BBD4C239FE0D0005F5934 /* MillenialsTester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD49239FE0D0005F5934 /* MillenialsTester.swift */; };
 		463BBD4E239FE0D5005F5934 /* ProfilePicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD4D239FE0D5005F5934 /* ProfilePicture.swift */; };
 		463BBD51239FE137005F5934 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD4F239FE136005F5934 /* PlayerView.swift */; };
 		463BBD52239FE137005F5934 /* PlayerStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD50239FE136005F5934 /* PlayerStatsView.swift */; };
@@ -60,6 +59,14 @@
 		463BBD67239FE1D7005F5934 /* QuestionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD5F239FE1D7005F5934 /* QuestionVC.swift */; };
 		463BBD68239FE1D7005F5934 /* ConclusionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD60239FE1D7005F5934 /* ConclusionVC.swift */; };
 		463BBD6A239FE276005F5934 /* NSLocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD69239FE276005F5934 /* NSLocalizedString.swift */; };
+		4656F76D288C62AC0050F4B0 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4656F76C288C62AC0050F4B0 /* Coordinator.swift */; };
+		4656F7C3288C9BA50050F4B0 /* PlayerChangeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4656F7C2288C9BA50050F4B0 /* PlayerChangeFactory.swift */; };
+		4656F7C5288C9BAE0050F4B0 /* PlayerChangePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4656F7C4288C9BAE0050F4B0 /* PlayerChangePresenter.swift */; };
+		4656F7C7288C9BB70050F4B0 /* PlayerChangeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4656F7C6288C9BB70050F4B0 /* PlayerChangeInteractor.swift */; };
+		4656F7C9288C9BBF0050F4B0 /* PlayerChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4656F7C8288C9BBF0050F4B0 /* PlayerChangeView.swift */; };
+		4656F7CB288C9BC80050F4B0 /* PlayerChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4656F7CA288C9BC80050F4B0 /* PlayerChangeViewController.swift */; };
+		4656F7CD288C9D220050F4B0 /* PlayerChangeViewTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4656F7CC288C9D220050F4B0 /* PlayerChangeViewTokens.swift */; };
+		4656F7D0288CC3220050F4B0 /* MillenialsMainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4656F7CF288CC3220050F4B0 /* MillenialsMainCoordinator.swift */; };
 		467C01A82886F7DC00D38F7B /* DefaultQuestions.json in Resources */ = {isa = PBXBuildFile; fileRef = 467C01A72886F7DC00D38F7B /* DefaultQuestions.json */; };
 		468619D6229709930077CE70 /* ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 468619D1229708430077CE70 /* ExtraBold.ttf */; };
 		468619D7229709930077CE70 /* Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 468619CE229708430077CE70 /* Bold.ttf */; };
@@ -150,7 +157,6 @@
 		463BBD44239FE0BF005F5934 /* DisplayTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayTheme.swift; sourceTree = "<group>"; };
 		463BBD47239FE0D0005F5934 /* HapticFeedback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HapticFeedback.swift; sourceTree = "<group>"; };
 		463BBD48239FE0D0005F5934 /* Name.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Name.swift; sourceTree = "<group>"; };
-		463BBD49239FE0D0005F5934 /* MillenialsTester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MillenialsTester.swift; sourceTree = "<group>"; };
 		463BBD4D239FE0D5005F5934 /* ProfilePicture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePicture.swift; sourceTree = "<group>"; };
 		463BBD4F239FE136005F5934 /* PlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		463BBD50239FE136005F5934 /* PlayerStatsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerStatsView.swift; sourceTree = "<group>"; };
@@ -166,6 +172,14 @@
 		463BBD5F239FE1D7005F5934 /* QuestionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionVC.swift; sourceTree = "<group>"; };
 		463BBD60239FE1D7005F5934 /* ConclusionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConclusionVC.swift; sourceTree = "<group>"; };
 		463BBD69239FE276005F5934 /* NSLocalizedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLocalizedString.swift; sourceTree = "<group>"; };
+		4656F76C288C62AC0050F4B0 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		4656F7C2288C9BA50050F4B0 /* PlayerChangeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerChangeFactory.swift; sourceTree = "<group>"; };
+		4656F7C4288C9BAE0050F4B0 /* PlayerChangePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerChangePresenter.swift; sourceTree = "<group>"; };
+		4656F7C6288C9BB70050F4B0 /* PlayerChangeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerChangeInteractor.swift; sourceTree = "<group>"; };
+		4656F7C8288C9BBF0050F4B0 /* PlayerChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerChangeView.swift; sourceTree = "<group>"; };
+		4656F7CA288C9BC80050F4B0 /* PlayerChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerChangeViewController.swift; sourceTree = "<group>"; };
+		4656F7CC288C9D220050F4B0 /* PlayerChangeViewTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerChangeViewTokens.swift; sourceTree = "<group>"; };
+		4656F7CF288CC3220050F4B0 /* MillenialsMainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MillenialsMainCoordinator.swift; sourceTree = "<group>"; };
 		467C01A72886F7DC00D38F7B /* DefaultQuestions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DefaultQuestions.json; sourceTree = "<group>"; };
 		468619CD229708420077CE70 /* SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SemiBold.ttf; sourceTree = "<group>"; };
 		468619CE229708430077CE70 /* Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bold.ttf; sourceTree = "<group>"; };
@@ -311,7 +325,6 @@
 				463BBD43239FE0BF005F5934 /* DeviceType.swift */,
 				463BBD44239FE0BF005F5934 /* DisplayTheme.swift */,
 				463BBD47239FE0D0005F5934 /* HapticFeedback.swift */,
-				463BBD49239FE0D0005F5934 /* MillenialsTester.swift */,
 				463BBD48239FE0D0005F5934 /* Name.swift */,
 				463BBD4D239FE0D5005F5934 /* ProfilePicture.swift */,
 				468C20102434924A00C11805 /* WatchHandler.swift */,
@@ -320,10 +333,18 @@
 			path = Objects;
 			sourceTree = "<group>";
 		};
+		4656F7CE288CC2E70050F4B0 /* Custom Components */ = {
+			isa = PBXGroup;
+			children = (
+				463BBD4F239FE136005F5934 /* PlayerView.swift */,
+				46D7381A288849D30035BF08 /* PlayerStatsView */,
+			);
+			path = "Custom Components";
+			sourceTree = "<group>";
+		};
 		466B5B5F2263ADCE009D21C8 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
-				46D7381A288849D30035BF08 /* PlayerStatsView */,
 				46DE37CF22A57D5C00914493 /* End Game Views */,
 				4619935022A46D2A00B73136 /* Alerts */,
 				463BBD1D239FE009005F5934 /* FlatTextField.swift */,
@@ -331,7 +352,6 @@
 				463BBD1C239FE008005F5934 /* PlayerSetupView.swift */,
 				463BBD1B239FE008005F5934 /* QuestionReportCell.swift */,
 				463BBD19239FDFFB005F5934 /* AddedPointsView.swift */,
-				463BBD4F239FE136005F5934 /* PlayerView.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -355,6 +375,7 @@
 		468C27CF225684D000898202 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				4656F7CF288CC3220050F4B0 /* MillenialsMainCoordinator.swift */,
 				46B09A322888806E00B1D45E /* Intro */,
 				46FC5C672889FCBA00275539 /* PlayersSetup */,
 				46FC5C6A2889FD1600275539 /* Game */,
@@ -464,6 +485,7 @@
 				46414679224D585D00E0B0B0 /* Objects */,
 				466B5B5F2263ADCE009D21C8 /* Custom Views */,
 				4619934F22A46A7700B73136 /* Assets */,
+				4656F76C288C62AC0050F4B0 /* Coordinator.swift */,
 			);
 			path = Millenials;
 			sourceTree = "<group>";
@@ -530,7 +552,13 @@
 		46FC5C682889FCCD00275539 /* PlayerChange */ = {
 			isa = PBXGroup;
 			children = (
-				463BBD5E239FE1D7005F5934 /* PlayerChangeVC.swift */,
+				4656F7CE288CC2E70050F4B0 /* Custom Components */,
+				4656F7C2288C9BA50050F4B0 /* PlayerChangeFactory.swift */,
+				4656F7C4288C9BAE0050F4B0 /* PlayerChangePresenter.swift */,
+				4656F7C6288C9BB70050F4B0 /* PlayerChangeInteractor.swift */,
+				4656F7C8288C9BBF0050F4B0 /* PlayerChangeView.swift */,
+				4656F7CC288C9D220050F4B0 /* PlayerChangeViewTokens.swift */,
+				4656F7CA288C9BC80050F4B0 /* PlayerChangeViewController.swift */,
 			);
 			path = PlayerChange;
 			sourceTree = "<group>";
@@ -547,6 +575,7 @@
 			isa = PBXGroup;
 			children = (
 				46FC5C6D2889FD7200275539 /* GameSceneCoordinator.swift */,
+				463BBD5E239FE1D7005F5934 /* PlayerChangeVC.swift */,
 				46FC5C682889FCCD00275539 /* PlayerChange */,
 				46FC5C692889FCE000275539 /* Question */,
 				46FC5C6C2889FD3700275539 /* PlayerReport */,
@@ -670,8 +699,10 @@
 				463BBD38239FE052005F5934 /* Array.swift in Sources */,
 				46B09A34288880DD00B1D45E /* IntroView.swift in Sources */,
 				460DEDC822A03BBC0011E248 /* ActionSheet.swift in Sources */,
+				4656F7CD288C9D220050F4B0 /* PlayerChangeViewTokens.swift in Sources */,
 				463BBD6A239FE276005F5934 /* NSLocalizedString.swift in Sources */,
 				4619935222A46D4100B73136 /* NotificationProtocol.swift in Sources */,
+				4656F7C5288C9BAE0050F4B0 /* PlayerChangePresenter.swift in Sources */,
 				46B09A3E288896E200B1D45E /* IntroViewTokens.swift in Sources */,
 				463BBD58239FE19E005F5934 /* MillenialsResults.swift in Sources */,
 				463BBD64239FE1D7005F5934 /* IntroVC.swift in Sources */,
@@ -685,23 +716,28 @@
 				463BBD46239FE0BF005F5934 /* DisplayTheme.swift in Sources */,
 				463BBD4E239FE0D5005F5934 /* ProfilePicture.swift in Sources */,
 				463BBD66239FE1D7005F5934 /* PlayerChangeVC.swift in Sources */,
-				463BBD4C239FE0D0005F5934 /* MillenialsTester.swift in Sources */,
 				468C20112434924A00C11805 /* WatchHandler.swift in Sources */,
 				46965997239C4C7D003F38FD /* OrientationManager.swift in Sources */,
+				4656F7C9288C9BBF0050F4B0 /* PlayerChangeView.swift in Sources */,
 				463BBD68239FE1D7005F5934 /* ConclusionVC.swift in Sources */,
 				46C25B11239C377400CEB580 /* AboutMeVC.swift in Sources */,
 				46FC5C6E2889FD7200275539 /* GameSceneCoordinator.swift in Sources */,
 				463BBD33239FE052005F5934 /* UIFont.swift in Sources */,
+				4656F7D0288CC3220050F4B0 /* MillenialsMainCoordinator.swift in Sources */,
+				4656F7CB288C9BC80050F4B0 /* PlayerChangeViewController.swift in Sources */,
 				46B09A36288881B800B1D45E /* IntroFactory.swift in Sources */,
 				46E3FF59229986160044A7EB /* LastQuestionSegue.swift in Sources */,
 				463BBD1E239FE009005F5934 /* QuestionReportCell.swift in Sources */,
 				463BBD63239FE1D7005F5934 /* PlayerRoundReportVC.swift in Sources */,
 				463BBD41239FE0B0005F5934 /* Question.swift in Sources */,
+				4656F7C7288C9BB70050F4B0 /* PlayerChangeInteractor.swift in Sources */,
 				46DE37D122A57D6900914493 /* TieView.swift in Sources */,
+				4656F7C3288C9BA50050F4B0 /* PlayerChangeFactory.swift in Sources */,
 				463BBD56239FE151005F5934 /* UIStoryboardSegue.swift in Sources */,
 				46D7381C288849EF0035BF08 /* PlayerStatsViewStyle.swift in Sources */,
 				463BBD1F239FE009005F5934 /* PlayerSetupView.swift in Sources */,
 				463BBD30239FE052005F5934 /* UINavigationBar.swift in Sources */,
+				4656F76D288C62AC0050F4B0 /* Coordinator.swift in Sources */,
 				46B09A382888821100B1D45E /* IntroInteractor.swift in Sources */,
 				463BBD39239FE052005F5934 /* UIImageView.swift in Sources */,
 				463BBD4B239FE0D0005F5934 /* Name.swift in Sources */,

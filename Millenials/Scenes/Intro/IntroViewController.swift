@@ -33,10 +33,6 @@ final class IntroViewController: UIViewController {
         contentView.rightButton.setImage(newImage, for: .normal)
     }
     
-    func goToPlayers() {
-        navigationController?.pushViewController(PlayersVC(), animated: true)
-    }
-    
 }
 
 extension IntroViewController: IntroViewDelegate {

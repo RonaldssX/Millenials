@@ -14,6 +14,7 @@ import AppKit
 final class ConclusionVC: UIViewController {
     
     fileprivate var displayPlayer: Player?
+    weak var coordinator: GameSceneCoordinator?
     
     private var winnerView: WinnerView? {
         
@@ -178,7 +179,7 @@ final class ConclusionVC: UIViewController {
                 nav.exitToMainScreen()
             }
         } else {
-            NotificationCenter.default.post(name: "next")
+            coordinator?.exit()
             //navigationController?.popToRootViewController(animated: true)
             //if let introVC = navigationController?.children.first(where: { $0 is IntroVC }) as? IntroVC {
             //    navigationController?.popToViewController(introVC, animated: true)
@@ -186,7 +187,7 @@ final class ConclusionVC: UIViewController {
             //    navigationController?.popToRootViewController(animated: true)
             //}
         }
-        Millenials.shared.prepareForNextGame()
+        //Millenials.shared.prepareForNextGame()
         
     }
     

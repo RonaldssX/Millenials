@@ -9,145 +9,80 @@
 import Foundation
 import UIKit
 
-protocol Coordinator {
-    func start(_ currentRootViewController: UIViewController)
-    func nextScene()
-    func exit()
-}
+#warning("talvez fazer coordinator para player report")
 
-final class GameSceneCoordinator: Coordinator {
+final class GameSceneCoordinator: NSObject, Coordinator {
     
-    private typealias PlayerChangeScene = PlayerChangeVC
-    private typealias QuestionScene = QuestionVC
-    private typealias ReportScene = PlayerRoundReportVC
+    var childCoordinators: [Coordinator]
+    var controllers: [UIViewController]
+    var navigationController: UINavigationController
     
-    private enum Scenes {
-        case playerChange, question, report, conclusion
-        
-        case unspecified
-        
-        static let allCases: [GameSceneCoordinator.Scenes] = [.playerChange, .question, .report, .conclusion]
-        
-    }
+    weak var parentCoordinator: Coordinator?
     
-    var game: Millenials
-    private var navigationController: UINavigationController = UINavigationController()
-    var previousScene: UIViewController!
+    var game: Millenials!
     
-    private var currentScene: Scenes
-    
-    init(game: Millenials) {
+    init(navigationController: UINavigationController, game: Millenials) {
+        self.childCoordinators = []
+        self.controllers = []
+        self.navigationController = navigationController
         self.game = game
-        self.currentScene = .unspecified
-        NotificationCenter.default.addObserver(self, selector: #selector(nextScene), name: notification(name: "next"), object: nil)
     }
     
-    func start(_ currentRootViewController: UIViewController) {
-        let rootViewController: UIViewController = getPlayerChangeScene()
-        self.navigationController = UINavigationController(rootViewController: rootViewController)
-        
-        self.previousScene = currentRootViewController
-        currentRootViewController.modalPresentationStyle = .overFullScreen
-        currentRootViewController.present(navigationController, animated: true) {
-            self.currentScene = .playerChange
-        }
-        
+    // playerChange -> question -> player report -> conclusion
+    func start() {
+        let initialViewController = getPlayerChangeScene()
+        navigationController.delegate = self
+        controllers.append(initialViewController)
+        navigationController.pushViewController(initialViewController, animated: true)
     }
     
-    @objc func nextScene() {
-        switch currentScene {
-        case .playerChange:
-            goToQuestion()
-            break
-        case .question:
-            goToReport()
-            break
-        case .report:
-            if !(game.gameHasEnded) {
-                if (tryPopToPlayerChange(shouldReconfigure: true) == nil) {
-                    goToPlayerChange()
-                }
-            } else {
-                goToConclusion()
-            }
-            break
-        case .conclusion:
-            exit()
-            break;
-        default:
-            if (tryPopToPlayerChange(shouldReconfigure: true) == nil) {
-                goToPlayerChange()
-            }
+    func goToQuestions() {
+        let questionsScene = getQuestionScene()
+        controllers.append(questionsScene)
+        navigationController.pushViewController(questionsScene, animated: false)
+        (questionsScene as? QuestionVC)?.performSpecialAnimation()
+    }
+    
+    func goToReport() {
+        let reportScene = getReportScene()
+        controllers.append(reportScene)
+        navigationController.pushViewController(reportScene, animated: true)
+    }
+    
+    func goToPlayerChange() {
+        // provavelmente já existe ok
+        if let playerChangeScene = navigationController.viewControllers.first(where: { $0 is PlayerChangeViewController }) as? PlayerChangeViewController {
+            playerChangeScene.reconfigure(with: game.currentPlayer!)
+            navigationController.popToViewController(playerChangeScene, animated: true)
+        } else {
+            let playerChangeScene = getPlayerChangeScene()
+            navigationController.pushViewController(playerChangeScene, animated: true)
         }
     }
+    
+    func goToConclusion() {
+        let conclusionScene = getConclusionScene()
+        controllers.append(conclusionScene)
+        navigationController.pushViewController(conclusionScene, animated: true)
+    }
+    
     
     func exit() {
-        if let previousScene = previousScene {
-            game.endGame()
-            previousScene.navigationController?.popToRootViewController(animated: true)
-            navigationController.dismiss(animated: true) { [weak self] in
-                self?.game.prepareForNextGame()
-                self?.previousScene = nil
-                print("acabou aqui")
+        navigationController.delegate = nil
+        game.endGame()
+        game.prepareForNextGame()
+        end()
+    }
+    
+    private func cleanControllers() {
+        var i: Int = 0
+        while (i != controllers.count) {
+            if !(navigationController.viewControllers.contains(controllers[i])) {
+                controllers.remove(at: i)
+                continue
             }
+            i++
         }
-    }
-    // MARK: - Factories
-    private func getPlayerChangeScene(_ specificPlayer: Player? = nil) -> UIViewController {
-        let playerChangeScene = PlayerChangeScene()
-        playerChangeScene.configure(with: specificPlayer ?? game.currentPlayer!)
-        return playerChangeScene
-    }
-    
-    private func getQuestionScene(_ specificQuestions: [Question]? = nil) -> UIViewController {
-        let questionScene = QuestionScene()
-        questionScene.configure(with: specificQuestions ?? game.currentPlayer!.questions, delegate: game)
-        questionScene.navigationItem.setHidesBackButton(true, animated: true)
-        return questionScene
-    }
-    
-    private func getReportScene(_ specificPlayer: Player? = nil, specificRound: Int? = nil) -> UIViewController {
-        let reportScene = ReportScene()
-        reportScene.player = specificPlayer ?? game.currentPlayer!
-        reportScene.navigationItem.setHidesBackButton(true, animated: true)
-        return reportScene
-    }
-    
-    private func getConclusionScene() -> UIViewController {
-        let conclusionScene = ConclusionVC()
-        conclusionScene.navigationItem.setHidesBackButton(true, animated: true)
-        return conclusionScene
-    }
-    
-    // MARK: - Go To
-    
-    @discardableResult func goToPlayerChange(_ specificPlayer: Player? = nil) -> UIViewController {
-        let playerChangeScene = getPlayerChangeScene(specificPlayer)
-        navigationController.pushViewController(playerChangeScene, animated: true)
-        currentScene = .playerChange
-        return playerChangeScene
-    }
-    
-    @discardableResult func goToQuestion(_ specificQuestions: [Question]? = nil) -> UIViewController {
-        let questionScene = getQuestionScene(specificQuestions)
-        navigationController.pushViewController(questionScene, animated: false)
-        (questionScene as! QuestionVC).performSpecialAnimation()
-        currentScene = .question
-        return questionScene
-    }
-    
-    @discardableResult func goToReport(_ specificPlayer: Player? = nil, specificRound: Int? = nil) -> UIViewController {
-        let reportScene = getReportScene(specificPlayer, specificRound: specificRound)
-        navigationController.pushViewController(reportScene, animated: false)
-        currentScene = .report
-        return reportScene
-    }
-    
-    @discardableResult func goToConclusion() -> UIViewController {
-        let conclusionScene = getConclusionScene()
-        navigationController.pushViewController(conclusionScene, animated: true)
-        currentScene = .conclusion
-        return conclusionScene
     }
     
     // MARK: - Pops
@@ -158,7 +93,6 @@ final class GameSceneCoordinator: Coordinator {
                 playerChangeScene.configure(with: playerToReconfigure ?? game.currentPlayer!)
             }
             navigationController.popToViewController(playerChangeScene, animated: true)
-            currentScene = .playerChange
             return playerChangeScene
         }
         return nil
@@ -167,11 +101,10 @@ final class GameSceneCoordinator: Coordinator {
     @discardableResult func tryPopToQuestion(_ questionsToReconfigure: [Question]? = nil, _ delegateToReconfigure: MillenialsInteractionsProtocol? = nil, shouldReconfigure: Bool) -> UIViewController? {
         if let questionScene = navigationController.children.first(where: { $0 is QuestionVC }) as? QuestionVC {
             if shouldReconfigure, let questionsToReconfigure = questionsToReconfigure {
-                questionScene.configure(with: questionsToReconfigure, delegate: delegateToReconfigure ?? game)
+                questionScene.configure(with: questionsToReconfigure, delegate: delegateToReconfigure ?? game, coordinator: self)
             }
             navigationController.popToViewController(questionScene, animated: false)
             questionScene.performSpecialAnimation()
-            currentScene = .question
             return questionScene
         }
         return nil
@@ -183,7 +116,6 @@ final class GameSceneCoordinator: Coordinator {
                 reportScene.player = playerToReconfigure
             }
             navigationController.popToViewController(reportScene, animated: true)
-            currentScene = .report
             return reportScene
         }
         return nil
@@ -195,14 +127,50 @@ final class GameSceneCoordinator: Coordinator {
                 /// reconfigure()
             }
             navigationController.popToViewController(conclusionScene, animated: true)
-            currentScene = .conclusion
             return conclusionScene
         }
         return nil
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
+}
+
+// MARK: - Factories
+extension GameSceneCoordinator {
+    
+    private func getPlayerChangeScene(_ specificPlayer: Player? = nil) -> UIViewController {
+        let playerChangeScene = PlayerChangeFactory.make(coordinator: self, player: specificPlayer ?? game.currentPlayer!)
+        return playerChangeScene
     }
     
+    private func getQuestionScene(_ specificQuestions: [Question]? = nil) -> UIViewController {
+        let questionScene = QuestionVC()
+        questionScene.configure(with: specificQuestions ?? game.currentPlayer!.questions, delegate: game, coordinator: self)
+        questionScene.navigationItem.setHidesBackButton(true, animated: true)
+        return questionScene
+    }
+    
+    private func getReportScene(_ specificPlayer: Player? = nil, specificRound: Int? = nil) -> UIViewController {
+        let reportScene = PlayerRoundReportVC()
+        reportScene.player = specificPlayer ?? game.currentPlayer!
+        reportScene.coordinator = self
+        reportScene.navigationItem.setHidesBackButton(true, animated: true)
+        return reportScene
+    }
+    
+    private func getConclusionScene() -> UIViewController {
+        let conclusionScene = ConclusionVC()
+        conclusionScene.coordinator = self
+        conclusionScene.navigationItem.setHidesBackButton(true, animated: true)
+        return conclusionScene
+    }
+    
+}
+
+extension GameSceneCoordinator: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        if (viewController is PlayerChangeViewController),
+           let _ = navigationController.transitionCoordinator?.viewController(forKey: .from) as? PlayerRoundReportVC {
+            cleanControllers()
+        }
+    }
 }

@@ -113,19 +113,6 @@ extension IntroView {
     
     private func debugLabels() {
         if AppConfigs.DebugConfigs.shared.isDebuggingEnabled {
-            /*
-            let debugOnLabel = UILabel()
-            debugOnLabel.text = "Debug: \(MDebug.shared.shouldDebug)"
-            debugOnLabel.font = UIFont.defaultFont(size: 10, weight: .light)
-            debugOnLabel.textColor = .OffWhite
-            
-            bottomView.addSubview(debugOnLabel)
-            debugOnLabel.translatesAutoresizingMaskIntoConstraints = false
-            
-            debugOnLabel.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor).isActive = true
-            debugOnLabel.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: -25).isActive = true
-             */
-            
             let debugLabel = UILabel()
             debugLabel.text = "Millenials \(Bundle.main.infoDictionary!["CFBundleShortVersionString"]!) build \(Bundle.main.infoDictionary!["CFBundleVersion"]!)"
             debugLabel.font = .defaultFont(size: 15, weight: .light)
@@ -137,7 +124,6 @@ extension IntroView {
             debugLabel.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor).isActive = true
             debugLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20).isActive = true
         }
-        
     }
     
     func configure(with delegate: IntroViewDelegate?, animator: IntroViewAnimator? = nil, tokens: IntroViewTokens) {

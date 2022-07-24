@@ -11,6 +11,7 @@ import UIKit    // StatsChangeSegue
 final class PlayerRoundReportVC: UIViewController {
     
     weak var player: Player?
+    weak var coordinator: GameSceneCoordinator?
     
     private var imageViewConstraint: NSLayoutConstraint? // 50 \ 30
     private var playerImageView: UIImageView! {
@@ -212,7 +213,7 @@ final class PlayerRoundReportVC: UIViewController {
         if (GameConfigs.shared.tempShouldUseSegues) {
             performSegue(withIdentifier: "StatsChangeSegue", sender: nil)
         } else {
-            NotificationCenter.default.post(name: "next")
+            coordinator?.goToPlayerChange()
             /*
             if let playerChangeVC = navigationController?.children.first(where: { $0 is PlayerChangeVC }) as? PlayerChangeVC {
                 playerChangeVC.configure(with: Millenials.shared.currentPlayer!)
@@ -279,7 +280,7 @@ extension PlayerRoundReportVC {
         if (GameConfigs.shared.tempShouldUseSegues) {
             performSegue(withIdentifier: "ReportConclusionSegue", sender: nil)
         } else {
-            NotificationCenter.default.post(name: "next")
+            coordinator?.goToConclusion()
             //let conclusionVC = ConclusionVC()
             //navigationController?.pushViewController(conclusionVC, animated: false)
         }
@@ -299,7 +300,6 @@ extension PlayerRoundReportVC: UITableViewDataSource, UITableViewDelegate {
         
         let question = player!.questions[indexPath.row]
         let answer = player!.answeredQuestionsStore[Millenials.shared.gameRound - 1][indexPath.row]
-        //let question = _currentPlayer!.answeredQuestions[indexPath.row + ((Millenials.shared.gameRound - 1) * Questions)]
         questionCell.configureWithQuestion(question, answer: answer)
         return questionCell
         
