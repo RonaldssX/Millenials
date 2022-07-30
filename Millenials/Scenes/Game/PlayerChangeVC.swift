@@ -14,6 +14,7 @@ protocol PlayerChangeVCProtocol {
     
 }
 
+@available(*, deprecated, message: "Use PlayerChangeFactory.make() instead")
 final class PlayerChangeVC: UIViewController {
     
     var player: Player!

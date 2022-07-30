@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MillenialsDS
 
 extension UIColor {
     
@@ -32,12 +33,16 @@ extension UIColor {
     }
 
     
-    public static let OffWhite = UIColor(R: 247, G: 241, B: 227, alpha: 1)
-    public static let Pink = UIColor(R: 229, G: 44, B: 134, alpha: 1)
-    public static let FullWhite = UIColor(R: 255, G: 255, B: 255, alpha: 1)
-    public static let OffBlack = UIColor(R: 7, G: 7, B: 7, alpha: 1)
-    public static let Purple = UIColor(R: 44, G: 44, B: 84, alpha: 1)
-    public static let LightPurple = UIColor(R: 64, G: 64, B: 122, alpha: 1)
+    //public static let OffWhite = UIColor(R: 247, G: 241, B: 227, alpha: 1)
+    //public static let Pink = UIColor(R: 229, G: 44, B: 134, alpha: 1)
+    //public static let OffBlack = UIColor(R: 7, G: 7, B: 7, alpha: 1)
+    //public static let Purple = UIColor(R: 44, G: 44, B: 84, alpha: 1)
+    //public static let LightPurple = UIColor(R: 64, G: 64, B: 122, alpha: 1)
+    static let OffWhite = ColorToken.primaryTextColor.value
+    static let Pink = ColorToken.primaryButtonColor.value
+    static let OffBlack = ColorToken.secondaryTextColor.value
+    static let Purple = ColorToken.mainColor.value
+    static let LightPurple = ColorToken.tertiaryButtonColor.value
     public static let Green = UIColor(R: 0, G: 200, B: 83, alpha: 1)
     public static let Red = UIColor(R: 244, G: 67, B: 54, alpha: 1)
     public static let Yellow = UIColor(R: 255, G: 235, B: 59, alpha: 1)

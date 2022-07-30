@@ -7,6 +7,7 @@
 //
 
 import UIKit.UIView
+import MillenialsDS
 
 fileprivate let gradientName: String = "millenialsGradient"
 
@@ -48,8 +49,8 @@ extension UIView {
     }
     
     func addMillenialsGradient() {
-       
-        let millenialsColors: [UIColor] = [.Purple, UIColor.Purple.withAlphaComponent(0.98)]
+        
+        let millenialsColors: [UIColor] = [ColorToken.mainColor.value, ColorToken.mainColor.value.withAlphaComponent(0.98)]
         
         gradient(colors: millenialsColors)
         

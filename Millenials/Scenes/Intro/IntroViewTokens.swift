@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MillenialsDS
 
 struct IntroViewTokens: Decodable, Hashable, Equatable {
     
@@ -26,7 +27,7 @@ struct IntroViewTokens: Decodable, Hashable, Equatable {
         init() {
             self.image = UIImage(named: "Millenials_Icon")!
             self.backgroundColor = .clear
-            self.tintColor = .OffWhite
+            self.tintColor = ColorToken.mainColor.value
         }
         
         init(from decoder: Decoder) throws {
@@ -63,8 +64,8 @@ struct IntroViewTokens: Decodable, Hashable, Equatable {
         
         init() {
             self.cornerRadius = 8.0
-            self.backgroundColor = .OffWhite.withAlphaComponent(0.96)
-            self.titleColor = .LightPurple
+            self.backgroundColor = ColorToken.secondaryButtonColor.value.withAlphaComponent(0.96)
+            self.titleColor = ColorToken.secondaryTextColor.value
             self.font = .defaultFont(size: (isiPad ? 26 : 22), weight: .medium)
             self.title = localized("PlayGame")
         }
@@ -108,15 +109,15 @@ struct IntroViewTokens: Decodable, Hashable, Equatable {
         let titleFont: UIFont
         
         init() {
-            self.backgroundColor = .OffWhite.withAlphaComponent(0.96)
+            self.backgroundColor = ColorToken.secondaryButtonColor.value.withAlphaComponent(0.96)
             if #available(iOS 13.0, macCatalyst 13.0, *) {
                 self.image = UIImage(systemName: "questionmark", withConfiguration: UIImage.SymbolConfiguration(scale: .large))!
             } else {
                 self.image = UIImage()
             }
-            self.imageTintColor = .LightPurple
+            self.imageTintColor = ColorToken.secondaryTextColor.value
             self.title = "?"
-            self.titleColor = .LightPurple
+            self.titleColor = ColorToken.secondaryTextColor.value
             self.titleFont = .defaultFont(size: (isiPad ? 35 : 25), weight: .medium)
         }
         
@@ -176,8 +177,8 @@ struct IntroViewTokens: Decodable, Hashable, Equatable {
         let imageTintColor: UIColor
         
         init() {
-            self.backgroundColor = .OffWhite.withAlphaComponent(0.96)
-            self.imageTintColor = .LightPurple
+            self.backgroundColor = ColorToken.secondaryButtonColor.value.withAlphaComponent(0.96)
+            self.imageTintColor = ColorToken.secondaryTextColor.value
         }
         
         init(from decoder: Decoder) throws {

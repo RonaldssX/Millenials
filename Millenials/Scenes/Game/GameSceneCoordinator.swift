@@ -16,6 +16,7 @@ final class GameSceneCoordinator: NSObject, Coordinator {
     var childCoordinators: [Coordinator]
     var controllers: [UIViewController]
     var navigationController: UINavigationController
+    var hasStarted: Bool
     
     weak var parentCoordinator: Coordinator?
     
@@ -25,15 +26,18 @@ final class GameSceneCoordinator: NSObject, Coordinator {
         self.childCoordinators = []
         self.controllers = []
         self.navigationController = navigationController
+        self.hasStarted = false
         self.game = game
     }
     
     // playerChange -> question -> player report -> conclusion
     func start() {
+        guard !hasStarted else { return }
         let initialViewController = getPlayerChangeScene()
         navigationController.delegate = self
         controllers.append(initialViewController)
         navigationController.pushViewController(initialViewController, animated: true)
+        hasStarted = true
     }
     
     func goToQuestions() {

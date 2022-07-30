@@ -28,6 +28,7 @@ fileprivate let soundOff: UIImage = {
     }
 }()
 
+@available(*, deprecated, message: "Use IntroFactory.make() instead")
 final class IntroVC: UIViewController {
     
     var isShortcutLaunch: Bool = false 

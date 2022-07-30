@@ -15,23 +15,11 @@ extension UINavigationBar {
     
     public func transparent() {
         
-        guard !(isTransparent) else {
-            
-            return;
-            
-            setBackgroundImage(nil, for: .default)
-            shadowImage = nil
-            isTranslucent = false
-            
-            return
-            
-        }
+        guard !(isTransparent) else { return }
         
         setBackgroundImage(UIImage(), for: .default)
         shadowImage = UIImage()
         isTranslucent = true
-        
-        
         
     }
     

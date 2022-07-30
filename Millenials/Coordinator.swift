@@ -6,8 +6,7 @@
 //  Copyright © 2022 Ronaldo Santana. All rights reserved.
 //
 
-import Foundation
-import UIKit.UINavigationController
+import UIKit
 
 @objc
 protocol Coordinator: AnyObject {
@@ -16,6 +15,8 @@ protocol Coordinator: AnyObject {
     var controllers: [UIViewController] { get set }
     var navigationController: UINavigationController { get set }
     weak var parentCoordinator: Coordinator? { get set }
+    
+    var hasStarted: Bool { get set }
     
     func start()
     @objc optional func end()

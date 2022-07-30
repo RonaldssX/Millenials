@@ -13,6 +13,7 @@ final class MillenialsMainCoordinator: Coordinator {
     var childCoordinators: [Coordinator]
     var controllers: [UIViewController]
     var navigationController: UINavigationController
+    var hasStarted: Bool
     
     weak var parentCoordinator: Coordinator?
     
@@ -20,12 +21,15 @@ final class MillenialsMainCoordinator: Coordinator {
         self.childCoordinators = []
         self.controllers = []
         self.navigationController = UINavigationController()
+        self.hasStarted = false
     }
     
     func start() {
+        guard !hasStarted else { return }
         let initialViewController = getIntroScene()
         controllers.append(initialViewController)
         navigationController.pushViewController(initialViewController, animated: false)
+        hasStarted = true
     }
     
     func goToPlayers() {

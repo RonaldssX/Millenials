@@ -9,54 +9,6 @@
 import Foundation
 import UIKit
 
-infix operator ~~: ComparisonPrecedence
-
-extension Array {
-    
-    public func allSatisfy(in range: Range<Int>, _ predicate: (Element) throws -> Bool) rethrows -> Bool {
-        
-        let rangedArray = self[range]
-        
-        return try rangedArray.allSatisfy(predicate)
-        
-        
-    }
-    /*
-    public static func ~~ (lhs: Array, rhs: Array) -> Bool {
-        guard (lhs.count == rhs.count) else { return false }
-        var count = 0
-        var equal = true
-        lhs.forEach() { e in
-            equal = rhs.contains() { $0 == e }
-        }
-        return true
-    }*/
-    
-}
-
-fileprivate let defaultAddPicture = UIImage(named: "Player_Add")!
-fileprivate let defaultPicture = UIImage(named: "Player_Default")!
-
-extension Array where Element == PlayerSetupView {
-    
-   func createPlayerObjects() -> [Player] {
-        
-        var playerObjects: [Player] = []
-        
-        forEach({ playerView in
-            
-            let player = Player(name: playerView.playerTextField.text ?? "", picture: playerView.playerPicture ?? PlayerPictures.defaultGame, color: playerView.playerPictureView.tintColor)
-            
-            playerObjects.append(player)
-            
-        })
-        
-        return playerObjects
-        
-    }
-    
-}
-
 extension Array where Element == UIButton {
     
     func updateAnswers() {
@@ -146,3 +98,4 @@ extension Array where Element == UIButton {
     }
     
 }
+

@@ -17,7 +17,7 @@ fileprivate let TextFieldIcon: UIImage = {
     }
 }()
 
-class PlayerSetupView: UIView {    
+class LegacyPlayerSetupView: UIView {    
     
     public weak var rootViewController: UIViewController? {
         didSet {
@@ -38,7 +38,7 @@ class PlayerSetupView: UIView {
             guard (self.playerPicture != nil),
                   (playerPictureView != nil) else { return }
             
-            playerPictureView.image = self.playerPicture?.scaled(to: playerPictureView!.bounds.size)
+            playerPictureView.image = self.playerPicture
             if !(PlayerPictures.isDefaultPicture(playerPicture)) {
                 playerPictureView!.layer.borderWidth = 0.0
                 return

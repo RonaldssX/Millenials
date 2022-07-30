@@ -1,0 +1,14 @@
+{
+    "colorFile": {
+        "contentType": "colorToken",
+        "fileName": "LightColors",
+        "fileType": "plist",
+        "fileURL": "http://changeme.com"
+    },
+    "sizeFile": {
+        "contentType": "sizeToken",
+        "fileName": "LightSizes",
+        "fileType": "plist",
+        "fileURL": "http://changeme.com"
+    }
+}

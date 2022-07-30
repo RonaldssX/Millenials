@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		460B36582287BA6400FD7965 /* MillenialsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B36572287BA6400FD7965 /* MillenialsDelegate.swift */; };
 		460DEDC622A03B9C0011E248 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460DEDC522A03B9C0011E248 /* Alert.swift */; };
 		460DEDC822A03BBC0011E248 /* ActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460DEDC722A03BBC0011E248 /* ActionSheet.swift */; };
 		4615D3382295936200548EE2 /* OpenSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4615D3372295936200548EE2 /* OpenSegue.swift */; };
@@ -21,19 +20,17 @@
 		463BBD17239FDEB1005F5934 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 463BBD16239FDEB1005F5934 /* Main.storyboard */; };
 		463BBD1A239FDFFB005F5934 /* AddedPointsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD19239FDFFB005F5934 /* AddedPointsView.swift */; };
 		463BBD1E239FE009005F5934 /* QuestionReportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD1B239FE008005F5934 /* QuestionReportCell.swift */; };
-		463BBD1F239FE009005F5934 /* PlayerSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD1C239FE008005F5934 /* PlayerSetupView.swift */; };
+		463BBD1F239FE009005F5934 /* LegacyPlayerSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD1C239FE008005F5934 /* LegacyPlayerSetupView.swift */; };
 		463BBD20239FE009005F5934 /* FlatTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD1D239FE009005F5934 /* FlatTextField.swift */; };
 		463BBD22239FE015005F5934 /* BarTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD21239FE015005F5934 /* BarTimer.swift */; };
 		463BBD2F239FE052005F5934 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD23239FE052005F5934 /* UIButton.swift */; };
 		463BBD30239FE052005F5934 /* UINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD24239FE052005F5934 /* UINavigationBar.swift */; };
-		463BBD31239FE052005F5934 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD25239FE052005F5934 /* UIImage.swift */; };
 		463BBD32239FE052005F5934 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD26239FE052005F5934 /* UIBarButtonItem.swift */; };
-		463BBD33239FE052005F5934 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD27239FE052005F5934 /* UIFont.swift */; };
-		463BBD34239FE052005F5934 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD28239FE052005F5934 /* UIViewController.swift */; };
+		463BBD33239FE052005F5934 /* UIFont+DefaultFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD27239FE052005F5934 /* UIFont+DefaultFont.swift */; };
 		463BBD35239FE052005F5934 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD29239FE052005F5934 /* UIView.swift */; };
-		463BBD36239FE052005F5934 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD2A239FE052005F5934 /* Int.swift */; };
+		463BBD36239FE052005F5934 /* Int+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD2A239FE052005F5934 /* Int+Operators.swift */; };
 		463BBD37239FE052005F5934 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD2B239FE052005F5934 /* Notification.swift */; };
-		463BBD38239FE052005F5934 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD2C239FE052005F5934 /* Array.swift */; };
+		463BBD38239FE052005F5934 /* Array+UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD2C239FE052005F5934 /* Array+UIButton.swift */; };
 		463BBD39239FE052005F5934 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD2D239FE052005F5934 /* UIImageView.swift */; };
 		463BBD3A239FE052005F5934 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD2E239FE052005F5934 /* UIColor.swift */; };
 		463BBD3F239FE0B0005F5934 /* Millenials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD3B239FE0B0005F5934 /* Millenials.swift */; };
@@ -58,7 +55,8 @@
 		463BBD66239FE1D7005F5934 /* PlayerChangeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD5E239FE1D7005F5934 /* PlayerChangeVC.swift */; };
 		463BBD67239FE1D7005F5934 /* QuestionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD5F239FE1D7005F5934 /* QuestionVC.swift */; };
 		463BBD68239FE1D7005F5934 /* ConclusionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD60239FE1D7005F5934 /* ConclusionVC.swift */; };
-		463BBD6A239FE276005F5934 /* NSLocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BBD69239FE276005F5934 /* NSLocalizedString.swift */; };
+		4646C7D7288EEA1800CCDCB9 /* PlayerSetupAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4646C7D6288EEA1800CCDCB9 /* PlayerSetupAccessoryView.swift */; };
+		4646C7D9288EEA5500CCDCB9 /* PlayerViewTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4646C7D8288EEA5500CCDCB9 /* PlayerViewTokens.swift */; };
 		4656F76D288C62AC0050F4B0 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4656F76C288C62AC0050F4B0 /* Coordinator.swift */; };
 		4656F7C3288C9BA50050F4B0 /* PlayerChangeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4656F7C2288C9BA50050F4B0 /* PlayerChangeFactory.swift */; };
 		4656F7C5288C9BAE0050F4B0 /* PlayerChangePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4656F7C4288C9BAE0050F4B0 /* PlayerChangePresenter.swift */; };
@@ -98,6 +96,23 @@
 		46DE37D122A57D6900914493 /* TieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DE37D022A57D6900914493 /* TieView.swift */; };
 		46DE37D322A5846700914493 /* noAnswer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 46DE37D222A5846600914493 /* noAnswer.mp3 */; };
 		46E3FF59229986160044A7EB /* LastQuestionSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E3FF58229986160044A7EB /* LastQuestionSegue.swift */; };
+		46E5833C288DC227001E2191 /* MillenialsDS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E5833B288DC227001E2191 /* MillenialsDS.framework */; };
+		46E5833D288DC227001E2191 /* MillenialsDS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 46E5833B288DC227001E2191 /* MillenialsDS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		46E58340288DCF8A001E2191 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E5833F288DCF8A001E2191 /* Toast.swift */; };
+		46E58342288E1602001E2191 /* PlayerSetupFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E58341288E1602001E2191 /* PlayerSetupFactory.swift */; };
+		46E58344288E1610001E2191 /* PlayerSetupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E58343288E1610001E2191 /* PlayerSetupPresenter.swift */; };
+		46E58346288E161A001E2191 /* PlayerSetupInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E58345288E161A001E2191 /* PlayerSetupInteractor.swift */; };
+		46E58348288E1625001E2191 /* PlayerSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E58347288E1625001E2191 /* PlayerSetupView.swift */; };
+		46E5834A288E162F001E2191 /* PlayerSetupViewTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E58349288E162F001E2191 /* PlayerSetupViewTokens.swift */; };
+		46E5834C288E1636001E2191 /* PlayerSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E5834B288E1636001E2191 /* PlayerSetupViewController.swift */; };
+		46E5834E288E1EEA001E2191 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E5834D288E1EEA001E2191 /* Localizable.swift */; };
+		46FBE78B288F524D00E41748 /* MillenialsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FBE78A288F524D00E41748 /* MillenialsDelegate.swift */; };
+		46FBE791288F529000E41748 /* MillenialsColors.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46FBE78E288F528F00E41748 /* MillenialsColors.plist */; };
+		46FBE792288F529000E41748 /* MillenialsTheme.json in Resources */ = {isa = PBXBuildFile; fileRef = 46FBE78F288F529000E41748 /* MillenialsTheme.json */; };
+		46FBE793288F529000E41748 /* MillenialsSizes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46FBE790288F529000E41748 /* MillenialsSizes.plist */; };
+		46FBE798288F549A00E41748 /* LightTheme.json in Resources */ = {isa = PBXBuildFile; fileRef = 46FBE795288F549A00E41748 /* LightTheme.json */; };
+		46FBE799288F549A00E41748 /* LightColors.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46FBE796288F549A00E41748 /* LightColors.plist */; };
+		46FBE79A288F549A00E41748 /* LightSizes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46FBE797288F549A00E41748 /* LightSizes.plist */; };
 		46FC5C6628899F4900275539 /* Watcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FC5C6528899F4900275539 /* Watcher.swift */; };
 		46FC5C6E2889FD7200275539 /* GameSceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FC5C6D2889FD7200275539 /* GameSceneCoordinator.swift */; };
 		46FD19212378AE7C00AE848B /* QuestionSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FD19202378AE7B00AE848B /* QuestionSegue.swift */; };
@@ -114,10 +129,20 @@
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		46E5833E288DC227001E2191 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				46E5833D288DC227001E2191 /* MillenialsDS.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		460B36572287BA6400FD7965 /* MillenialsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MillenialsDelegate.swift; sourceTree = SOURCE_ROOT; };
 		460DEDC522A03B9C0011E248 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		460DEDC722A03BBC0011E248 /* ActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheet.swift; sourceTree = "<group>"; };
 		4615D3372295936200548EE2 /* OpenSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSegue.swift; sourceTree = "<group>"; };
@@ -134,19 +159,17 @@
 		463BBD16239FDEB1005F5934 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		463BBD19239FDFFB005F5934 /* AddedPointsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddedPointsView.swift; sourceTree = "<group>"; };
 		463BBD1B239FE008005F5934 /* QuestionReportCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionReportCell.swift; sourceTree = "<group>"; };
-		463BBD1C239FE008005F5934 /* PlayerSetupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerSetupView.swift; sourceTree = "<group>"; };
+		463BBD1C239FE008005F5934 /* LegacyPlayerSetupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyPlayerSetupView.swift; sourceTree = "<group>"; };
 		463BBD1D239FE009005F5934 /* FlatTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatTextField.swift; sourceTree = "<group>"; };
 		463BBD21239FE015005F5934 /* BarTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BarTimer.swift; path = "Millenials/Custom Views/BarTimer.swift"; sourceTree = SOURCE_ROOT; };
 		463BBD23239FE052005F5934 /* UIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		463BBD24239FE052005F5934 /* UINavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationBar.swift; sourceTree = "<group>"; };
-		463BBD25239FE052005F5934 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		463BBD26239FE052005F5934 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
-		463BBD27239FE052005F5934 /* UIFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
-		463BBD28239FE052005F5934 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		463BBD27239FE052005F5934 /* UIFont+DefaultFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+DefaultFont.swift"; sourceTree = "<group>"; };
 		463BBD29239FE052005F5934 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
-		463BBD2A239FE052005F5934 /* Int.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
+		463BBD2A239FE052005F5934 /* Int+Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Operators.swift"; sourceTree = "<group>"; };
 		463BBD2B239FE052005F5934 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
-		463BBD2C239FE052005F5934 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		463BBD2C239FE052005F5934 /* Array+UIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+UIButton.swift"; sourceTree = "<group>"; };
 		463BBD2D239FE052005F5934 /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		463BBD2E239FE052005F5934 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		463BBD3B239FE0B0005F5934 /* Millenials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Millenials.swift; sourceTree = "<group>"; };
@@ -171,7 +194,8 @@
 		463BBD5E239FE1D7005F5934 /* PlayerChangeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerChangeVC.swift; sourceTree = "<group>"; };
 		463BBD5F239FE1D7005F5934 /* QuestionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionVC.swift; sourceTree = "<group>"; };
 		463BBD60239FE1D7005F5934 /* ConclusionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConclusionVC.swift; sourceTree = "<group>"; };
-		463BBD69239FE276005F5934 /* NSLocalizedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLocalizedString.swift; sourceTree = "<group>"; };
+		4646C7D6288EEA1800CCDCB9 /* PlayerSetupAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSetupAccessoryView.swift; sourceTree = "<group>"; };
+		4646C7D8288EEA5500CCDCB9 /* PlayerViewTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewTokens.swift; sourceTree = "<group>"; };
 		4656F76C288C62AC0050F4B0 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		4656F7C2288C9BA50050F4B0 /* PlayerChangeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerChangeFactory.swift; sourceTree = "<group>"; };
 		4656F7C4288C9BAE0050F4B0 /* PlayerChangePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerChangePresenter.swift; sourceTree = "<group>"; };
@@ -224,6 +248,22 @@
 		46DE37D022A57D6900914493 /* TieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TieView.swift; sourceTree = "<group>"; };
 		46DE37D222A5846600914493 /* noAnswer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = noAnswer.mp3; sourceTree = "<group>"; };
 		46E3FF58229986160044A7EB /* LastQuestionSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastQuestionSegue.swift; sourceTree = "<group>"; };
+		46E5833B288DC227001E2191 /* MillenialsDS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MillenialsDS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		46E5833F288DCF8A001E2191 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		46E58341288E1602001E2191 /* PlayerSetupFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSetupFactory.swift; sourceTree = "<group>"; };
+		46E58343288E1610001E2191 /* PlayerSetupPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSetupPresenter.swift; sourceTree = "<group>"; };
+		46E58345288E161A001E2191 /* PlayerSetupInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSetupInteractor.swift; sourceTree = "<group>"; };
+		46E58347288E1625001E2191 /* PlayerSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSetupView.swift; sourceTree = "<group>"; };
+		46E58349288E162F001E2191 /* PlayerSetupViewTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSetupViewTokens.swift; sourceTree = "<group>"; };
+		46E5834B288E1636001E2191 /* PlayerSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSetupViewController.swift; sourceTree = "<group>"; };
+		46E5834D288E1EEA001E2191 /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
+		46FBE78A288F524D00E41748 /* MillenialsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MillenialsDelegate.swift; sourceTree = "<group>"; };
+		46FBE78E288F528F00E41748 /* MillenialsColors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MillenialsColors.plist; sourceTree = "<group>"; };
+		46FBE78F288F529000E41748 /* MillenialsTheme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MillenialsTheme.json; sourceTree = "<group>"; };
+		46FBE790288F529000E41748 /* MillenialsSizes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MillenialsSizes.plist; sourceTree = "<group>"; };
+		46FBE795288F549A00E41748 /* LightTheme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LightTheme.json; sourceTree = "<group>"; };
+		46FBE796288F549A00E41748 /* LightColors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LightColors.plist; sourceTree = "<group>"; };
+		46FBE797288F549A00E41748 /* LightSizes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LightSizes.plist; sourceTree = "<group>"; };
 		46FC5C6528899F4900275539 /* Watcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Watcher.swift; sourceTree = "<group>"; };
 		46FC5C6D2889FD7200275539 /* GameSceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneCoordinator.swift; sourceTree = "<group>"; };
 		46FD19202378AE7B00AE848B /* QuestionSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionSegue.swift; sourceTree = "<group>"; };
@@ -234,6 +274,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46E5833C288DC227001E2191 /* MillenialsDS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +340,7 @@
 			children = (
 				4630195D238C5999009971D6 /* Localizable.strings */,
 				46301967238C6276009971D6 /* InfoPlist.strings */,
+				46E5834D288E1EEA001E2191 /* Localizable.swift */,
 			);
 			path = Localization;
 			sourceTree = "<group>";
@@ -306,6 +348,7 @@
 		463BBD18239FDF1E005F5934 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
+				46FBE78C288F526500E41748 /* Themes */,
 				463BBD0E239FDDDF005F5934 /* Info.plist */,
 				46D2021D23E0A2CE00BB959F /* Millenials.entitlements */,
 				463BBD10239FDDF8005F5934 /* LaunchScreen.storyboard */,
@@ -333,6 +376,15 @@
 			path = Objects;
 			sourceTree = "<group>";
 		};
+		4646C7D5288EEA0600CCDCB9 /* Custom Components */ = {
+			isa = PBXGroup;
+			children = (
+				4646C7D6288EEA1800CCDCB9 /* PlayerSetupAccessoryView.swift */,
+				4646C7D8288EEA5500CCDCB9 /* PlayerViewTokens.swift */,
+			);
+			path = "Custom Components";
+			sourceTree = "<group>";
+		};
 		4656F7CE288CC2E70050F4B0 /* Custom Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -349,9 +401,10 @@
 				4619935022A46D2A00B73136 /* Alerts */,
 				463BBD1D239FE009005F5934 /* FlatTextField.swift */,
 				463BBD21239FE015005F5934 /* BarTimer.swift */,
-				463BBD1C239FE008005F5934 /* PlayerSetupView.swift */,
+				463BBD1C239FE008005F5934 /* LegacyPlayerSetupView.swift */,
 				463BBD1B239FE008005F5934 /* QuestionReportCell.swift */,
 				463BBD19239FDFFB005F5934 /* AddedPointsView.swift */,
+				46E5833F288DCF8A001E2191 /* Toast.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -391,20 +444,17 @@
 		468C27D2225684E900898202 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				463BBD2C239FE052005F5934 /* Array.swift */,
-				463BBD2A239FE052005F5934 /* Int.swift */,
+				463BBD2C239FE052005F5934 /* Array+UIButton.swift */,
+				463BBD2A239FE052005F5934 /* Int+Operators.swift */,
 				463BBD2B239FE052005F5934 /* Notification.swift */,
-				463BBD69239FE276005F5934 /* NSLocalizedString.swift */,
 				463BBD26239FE052005F5934 /* UIBarButtonItem.swift */,
 				463BBD23239FE052005F5934 /* UIButton.swift */,
 				463BBD2E239FE052005F5934 /* UIColor.swift */,
-				463BBD27239FE052005F5934 /* UIFont.swift */,
-				463BBD25239FE052005F5934 /* UIImage.swift */,
+				463BBD27239FE052005F5934 /* UIFont+DefaultFont.swift */,
 				463BBD2D239FE052005F5934 /* UIImageView.swift */,
 				463BBD24239FE052005F5934 /* UINavigationBar.swift */,
 				463BBD55239FE151005F5934 /* UIStoryboardSegue.swift */,
 				463BBD29239FE052005F5934 /* UIView.swift */,
-				463BBD28239FE052005F5934 /* UIViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -475,7 +525,7 @@
 		46BC7F2C224A80E000288AC9 /* Millenials */ = {
 			isa = PBXGroup;
 			children = (
-				460B36572287BA6400FD7965 /* MillenialsDelegate.swift */,
+				46FBE78A288F524D00E41748 /* MillenialsDelegate.swift */,
 				46DAA35823C8896C005319D9 /* Animators */,
 				463BBD18239FDF1E005F5934 /* Support Files */,
 				46301958238C5971009971D6 /* Localization */,
@@ -503,6 +553,7 @@
 		46C1A37122A5F92700CBE40B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				46E5833B288DC227001E2191 /* MillenialsDS.framework */,
 				46C1A37222A5F92700CBE40B /* Python3.framework */,
 			);
 			name = Frameworks;
@@ -542,9 +593,53 @@
 			path = Debug;
 			sourceTree = "<group>";
 		};
+		46FBE78C288F526500E41748 /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				46FBE79B288F556300E41748 /* Light */,
+				46FBE794288F547A00E41748 /* Geometria Scape */,
+				46FBE78D288F527200E41748 /* Main */,
+			);
+			path = Themes;
+			sourceTree = "<group>";
+		};
+		46FBE78D288F527200E41748 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				46FBE78E288F528F00E41748 /* MillenialsColors.plist */,
+				46FBE790288F529000E41748 /* MillenialsSizes.plist */,
+				46FBE78F288F529000E41748 /* MillenialsTheme.json */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		46FBE794288F547A00E41748 /* Geometria Scape */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Geometria Scape";
+			sourceTree = "<group>";
+		};
+		46FBE79B288F556300E41748 /* Light */ = {
+			isa = PBXGroup;
+			children = (
+				46FBE796288F549A00E41748 /* LightColors.plist */,
+				46FBE797288F549A00E41748 /* LightSizes.plist */,
+				46FBE795288F549A00E41748 /* LightTheme.json */,
+			);
+			path = Light;
+			sourceTree = "<group>";
+		};
 		46FC5C672889FCBA00275539 /* PlayersSetup */ = {
 			isa = PBXGroup;
 			children = (
+				4646C7D5288EEA0600CCDCB9 /* Custom Components */,
+				46E58341288E1602001E2191 /* PlayerSetupFactory.swift */,
+				46E58343288E1610001E2191 /* PlayerSetupPresenter.swift */,
+				46E58345288E161A001E2191 /* PlayerSetupInteractor.swift */,
+				46E58347288E1625001E2191 /* PlayerSetupView.swift */,
+				46E58349288E162F001E2191 /* PlayerSetupViewTokens.swift */,
+				46E5834B288E1636001E2191 /* PlayerSetupViewController.swift */,
 			);
 			path = PlayersSetup;
 			sourceTree = "<group>";
@@ -603,6 +698,7 @@
 				46BC7F27224A80E000288AC9 /* Frameworks */,
 				46BC7F28224A80E000288AC9 /* Resources */,
 				463874102418491A0087B9F1 /* Embed Watch Content */,
+				46E5833E288DC227001E2191 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -657,6 +753,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46FBE79A288F549A00E41748 /* LightSizes.plist in Resources */,
+				46FBE791288F529000E41748 /* MillenialsColors.plist in Resources */,
 				46DE37D322A5846700914493 /* noAnswer.mp3 in Resources */,
 				468619D6229709930077CE70 /* ExtraBold.ttf in Resources */,
 				468619D7229709930077CE70 /* Bold.ttf in Resources */,
@@ -665,12 +763,16 @@
 				46301965238C6276009971D6 /* InfoPlist.strings in Resources */,
 				463BBD17239FDEB1005F5934 /* Main.storyboard in Resources */,
 				468619DA229709930077CE70 /* Medium.ttf in Resources */,
+				46FBE798288F549A00E41748 /* LightTheme.json in Resources */,
 				468619DB229709930077CE70 /* Regular.ttf in Resources */,
 				468619DC229709930077CE70 /* Light.ttf in Resources */,
+				46FBE799288F549A00E41748 /* LightColors.plist in Resources */,
 				463BBD11239FDDF9005F5934 /* LaunchScreen.storyboard in Resources */,
 				468619DD229709930077CE70 /* ExtraLight.ttf in Resources */,
+				46FBE793288F529000E41748 /* MillenialsSizes.plist in Resources */,
 				46A5F9F4288708070024D082 /* DefaultConfig.json in Resources */,
 				468619DE229709930077CE70 /* Thin.ttf in Resources */,
+				46FBE792288F529000E41748 /* MillenialsTheme.json in Resources */,
 				4619934A22A462F600B73136 /* correct.mp3 in Resources */,
 				4630195B238C5999009971D6 /* Localizable.strings in Resources */,
 				4619934C22A462FB00B73136 /* wrong.mp3 in Resources */,
@@ -691,42 +793,47 @@
 				463BBD35239FE052005F5934 /* UIView.swift in Sources */,
 				463BBD3F239FE0B0005F5934 /* Millenials.swift in Sources */,
 				463BBD65239FE1D7005F5934 /* PlayersVC.swift in Sources */,
+				46E58344288E1610001E2191 /* PlayerSetupPresenter.swift in Sources */,
 				463BBD42239FE0B0005F5934 /* Player.swift in Sources */,
 				463BBD1A239FDFFB005F5934 /* AddedPointsView.swift in Sources */,
 				463BBD62239FE1D7005F5934 /* AnsweredQuestionPreviewVC.swift in Sources */,
 				460DEDC622A03B9C0011E248 /* Alert.swift in Sources */,
-				463BBD31239FE052005F5934 /* UIImage.swift in Sources */,
-				463BBD38239FE052005F5934 /* Array.swift in Sources */,
+				463BBD38239FE052005F5934 /* Array+UIButton.swift in Sources */,
 				46B09A34288880DD00B1D45E /* IntroView.swift in Sources */,
 				460DEDC822A03BBC0011E248 /* ActionSheet.swift in Sources */,
 				4656F7CD288C9D220050F4B0 /* PlayerChangeViewTokens.swift in Sources */,
-				463BBD6A239FE276005F5934 /* NSLocalizedString.swift in Sources */,
 				4619935222A46D4100B73136 /* NotificationProtocol.swift in Sources */,
 				4656F7C5288C9BAE0050F4B0 /* PlayerChangePresenter.swift in Sources */,
 				46B09A3E288896E200B1D45E /* IntroViewTokens.swift in Sources */,
 				463BBD58239FE19E005F5934 /* MillenialsResults.swift in Sources */,
 				463BBD64239FE1D7005F5934 /* IntroVC.swift in Sources */,
-				463BBD34239FE052005F5934 /* UIViewController.swift in Sources */,
 				463BBD45239FE0BF005F5934 /* DeviceType.swift in Sources */,
+				46E58346288E161A001E2191 /* PlayerSetupInteractor.swift in Sources */,
 				46B09A3C288883B800B1D45E /* IntroPresenter.swift in Sources */,
+				46E58348288E1625001E2191 /* PlayerSetupView.swift in Sources */,
 				46FC5C6628899F4900275539 /* Watcher.swift in Sources */,
 				463BBD67239FE1D7005F5934 /* QuestionVC.swift in Sources */,
-				460B36582287BA6400FD7965 /* MillenialsDelegate.swift in Sources */,
 				463BBD20239FE009005F5934 /* FlatTextField.swift in Sources */,
 				463BBD46239FE0BF005F5934 /* DisplayTheme.swift in Sources */,
+				46E5834A288E162F001E2191 /* PlayerSetupViewTokens.swift in Sources */,
 				463BBD4E239FE0D5005F5934 /* ProfilePicture.swift in Sources */,
 				463BBD66239FE1D7005F5934 /* PlayerChangeVC.swift in Sources */,
+				46E58342288E1602001E2191 /* PlayerSetupFactory.swift in Sources */,
 				468C20112434924A00C11805 /* WatchHandler.swift in Sources */,
+				4646C7D9288EEA5500CCDCB9 /* PlayerViewTokens.swift in Sources */,
+				46FBE78B288F524D00E41748 /* MillenialsDelegate.swift in Sources */,
+				46E5834E288E1EEA001E2191 /* Localizable.swift in Sources */,
 				46965997239C4C7D003F38FD /* OrientationManager.swift in Sources */,
 				4656F7C9288C9BBF0050F4B0 /* PlayerChangeView.swift in Sources */,
 				463BBD68239FE1D7005F5934 /* ConclusionVC.swift in Sources */,
 				46C25B11239C377400CEB580 /* AboutMeVC.swift in Sources */,
 				46FC5C6E2889FD7200275539 /* GameSceneCoordinator.swift in Sources */,
-				463BBD33239FE052005F5934 /* UIFont.swift in Sources */,
+				463BBD33239FE052005F5934 /* UIFont+DefaultFont.swift in Sources */,
 				4656F7D0288CC3220050F4B0 /* MillenialsMainCoordinator.swift in Sources */,
 				4656F7CB288C9BC80050F4B0 /* PlayerChangeViewController.swift in Sources */,
 				46B09A36288881B800B1D45E /* IntroFactory.swift in Sources */,
 				46E3FF59229986160044A7EB /* LastQuestionSegue.swift in Sources */,
+				46E58340288DCF8A001E2191 /* Toast.swift in Sources */,
 				463BBD1E239FE009005F5934 /* QuestionReportCell.swift in Sources */,
 				463BBD63239FE1D7005F5934 /* PlayerRoundReportVC.swift in Sources */,
 				463BBD41239FE0B0005F5934 /* Question.swift in Sources */,
@@ -735,7 +842,8 @@
 				4656F7C3288C9BA50050F4B0 /* PlayerChangeFactory.swift in Sources */,
 				463BBD56239FE151005F5934 /* UIStoryboardSegue.swift in Sources */,
 				46D7381C288849EF0035BF08 /* PlayerStatsViewStyle.swift in Sources */,
-				463BBD1F239FE009005F5934 /* PlayerSetupView.swift in Sources */,
+				46E5834C288E1636001E2191 /* PlayerSetupViewController.swift in Sources */,
+				463BBD1F239FE009005F5934 /* LegacyPlayerSetupView.swift in Sources */,
 				463BBD30239FE052005F5934 /* UINavigationBar.swift in Sources */,
 				4656F76D288C62AC0050F4B0 /* Coordinator.swift in Sources */,
 				46B09A382888821100B1D45E /* IntroInteractor.swift in Sources */,
@@ -753,10 +861,11 @@
 				463BBD22239FE015005F5934 /* BarTimer.swift in Sources */,
 				46BEAEA82886DEFF00305798 /* AnsweredQuestion.swift in Sources */,
 				463BBD61239FE1D7005F5934 /* NavigationVC.swift in Sources */,
+				4646C7D7288EEA1800CCDCB9 /* PlayerSetupAccessoryView.swift in Sources */,
 				463BBD52239FE137005F5934 /* PlayerStatsView.swift in Sources */,
 				46DAA35A23C8897D005319D9 /* OpenAnimator.swift in Sources */,
 				463BBD3A239FE052005F5934 /* UIColor.swift in Sources */,
-				463BBD36239FE052005F5934 /* Int.swift in Sources */,
+				463BBD36239FE052005F5934 /* Int+Operators.swift in Sources */,
 				46A5F9F22887019A0024D082 /* AppConfigs.swift in Sources */,
 				463BBD37239FE052005F5934 /* Notification.swift in Sources */,
 				463BBD4A239FE0D0005F5934 /* HapticFeedback.swift in Sources */,
@@ -926,7 +1035,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
-				DEVELOPMENT_TEAM = S2B2XZHU49;
+				DEVELOPMENT_TEAM = SVEEF5ZF7T;
+				ENABLE_BITCODE = NO;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -935,8 +1045,12 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1.0;
+				OTHER_LDFLAGS = (
+					"-Xlinker",
+					"-interposable",
+				);
 				OTHER_SWIFT_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ronaldss.Millenialsss;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ronaldss.Millenials;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = YES;
@@ -955,7 +1069,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
-				DEVELOPMENT_TEAM = S2B2XZHU49;
+				DEVELOPMENT_TEAM = SVEEF5ZF7T;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -964,7 +1078,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ronaldss.Millenialsss;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ronaldss.Millenials;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = YES;

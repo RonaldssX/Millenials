@@ -9,11 +9,15 @@
 import Foundation
 
 extension NotificationCenter {
+    
+    static func post(name: String, data: [AnyHashable: Any]? = nil) {
+        NotificationCenter.default.post(name: name, data: data)
+    }
    
-    open func post(name: String, data: [AnyHashable: Any]? = nil) {
-        
-        DispatchQueue.main.async { self.post(name: notification(name: name), object: nil, userInfo: data) }
-        
+    func post(name: String, data: [AnyHashable: Any]? = nil) {
+        DispatchQueue.main.async {
+            self.post(name: notification(name: name), object: nil, userInfo: data)
+        }
     }
     
 }

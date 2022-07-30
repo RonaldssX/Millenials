@@ -21,7 +21,10 @@ final class IntroViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        contentView.animator?.performEnterAnimation(nil)
+        contentView.animator?.performEnterAnimation({
+            
+        })
+        
     }
     
     func configure(interactor: IntroInteractorProtocol?) {

@@ -1,0 +1,14 @@
+{
+    "colorFile": {
+        "contentType": "colorToken",
+        "fileName": "MillenialsColors",
+        "fileType": "plist",
+        "fileURL": "http://changeme.com"
+    },
+    "sizeFile": {
+        "contentType": "sizeToken",
+        "fileName": "MillenialsSizes",
+        "fileType": "plist",
+        "fileURL": "http://changeme.com"
+    }
+}

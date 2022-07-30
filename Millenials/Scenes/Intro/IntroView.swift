@@ -29,6 +29,7 @@ final class IntroView: UIView {
     weak var animator: IntroViewAnimator?
     private lazy var tokens: IntroViewTokens = .defaultTokens
     
+    
     private lazy var contentView: UIView = {
         let view = UIView()
         view.backgroundColor = .Purple

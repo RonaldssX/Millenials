@@ -15,7 +15,7 @@
 
 import UIKit
 
-fileprivate let cancelImage = UIImage(named: "ExitGame")!.scaled(to: CGSize(width: 30, height: 30))
+fileprivate let cancelImage = UIImage(named: "ExitGame")!
 
 final class NavigationVC: UINavigationController {
     

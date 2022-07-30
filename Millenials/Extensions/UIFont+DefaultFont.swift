@@ -8,7 +8,7 @@
 
 import UIKit.UIFont
 
-public enum DefaultFontWeight {
+enum DefaultFontWeight {
     
     case thin
     case extraLight
@@ -24,7 +24,7 @@ public enum DefaultFontWeight {
 
 extension UIFont {
     
-    open class func defaultFont(size: CGFloat, weight: DefaultFontWeight) -> UIFont {
+    class func defaultFont(size: CGFloat, weight: DefaultFontWeight) -> UIFont {
         
         var fontName: String!        
         

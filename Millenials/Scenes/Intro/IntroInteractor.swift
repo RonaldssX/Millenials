@@ -22,7 +22,6 @@ struct IntroInteractor: IntroInteractorProtocol {
     
     func setupPlayers() {
         presenter?.setupPlayers()
-        //if let navigation =
     }
     
     func showMadeByAlert() {

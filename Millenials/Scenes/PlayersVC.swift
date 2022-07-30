@@ -19,7 +19,7 @@ final class PlayersVC: UIViewController {
     
      var imageController: ImageController!
     
-     var player1View: PlayerSetupView! {
+     var player1View: LegacyPlayerSetupView! {
         
         willSet { self.player1View?.removeFromSuperview() }
         
@@ -44,7 +44,7 @@ final class PlayersVC: UIViewController {
         
     }
     
-    var player2View: PlayerSetupView! {
+    var player2View: LegacyPlayerSetupView! {
         
         willSet { self.player2View?.removeFromSuperview() }
         
@@ -126,10 +126,10 @@ final class PlayersVC: UIViewController {
         
         view.addMillenialsGradient()
         
-        self.player1View = PlayerSetupView()
+        self.player1View = LegacyPlayerSetupView()
         player1View.topAnchor.constraint(equalTo: view.safeGuide.topAnchor, constant: (isiPad ? 170 : 60)).isActive = true        
         
-        self.player2View = PlayerSetupView()
+        self.player2View = LegacyPlayerSetupView()
         player2View.topAnchor.constraint(equalTo: player1View.bottomAnchor, constant: 75).isActive = true
         
         self.startGameButton = UIButton()
@@ -164,7 +164,7 @@ final class PlayersVC: UIViewController {
         let opt = [player1View.playerPictureView, player2View.playerPictureView]
         imageController = ImageController(view: self)
         imageController.takePicture(callback: {[weak self](playerPic) in
-            let playerView = opt.first(where: {($0?.gestureRecognizers?.contains(sender))!})!?.superview as! PlayerSetupView
+            let playerView = opt.first(where: {($0?.gestureRecognizers?.contains(sender))!})!?.superview as! LegacyPlayerSetupView
             var playerPicture: UIImage
             if (playerPic == nil || PlayerPictures.isDefaultPicture(playerPic)) {
                             
@@ -271,9 +271,12 @@ extension PlayersVC {
     
     @objc
     private func start() {
-        
-        let playerViews: [PlayerSetupView] = [player1View, player2View]
-        Millenials.shared.players = playerViews.createPlayerObjects()
+        var players: [Player] = []
+        for playerView in [player1View!, player2View!] {
+            let newPlayer = Player(name: playerView.playerTextField.text ?? "", picture: playerView.playerPicture ?? PlayerPictures.defaultGame, color: playerView.playerPictureView.tintColor)
+            players.append(newPlayer)
+        }
+        Millenials.shared.players = players
         
         if let startAlert = startAlert, presentedViewController == startAlert {
             startAlert.dismissViewBlock() { self.navigate() }
@@ -291,11 +294,6 @@ extension PlayersVC {
             performSegue(withIdentifier: "PlayersChangeSegue", sender: nil)
         } else {
             coordinator?.goToGame()
-            /*
-            let playerChangeVC = PlayerChangeVC()
-            playerChangeVC.configure(with: Millenials.shared.currentPlayer!)
-            navigationController?.pushViewController(playerChangeVC, animated: false)
-             */
         }
     }
     
